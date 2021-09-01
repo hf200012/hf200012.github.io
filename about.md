@@ -11,5 +11,5 @@ title: 关于我
 
 <h2> 我的知乎 </h2>  
 
-[张峰]: https://www.zhihu.com/people/zhang-feng-68-16-47
+[张峰的知乎主页](https://www.zhihu.com/people/zhang-feng-68-16-47)
 
