@@ -4,7 +4,8 @@ title: "Apache doris 数据模型"
 date: 2021-09-01 
 description: "Apache doris 数据模型"
 tag: doris
----   
+---
+
 # Apache doris 数据模型
 
 本文档主要从逻辑层面描述 Doris 的数据模型以帮助用户更好的使用 Doris 应对不同的业务场景。
