@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "基于Apache doris怎么构建数据中台(一)-什么是数据中台"
-date: 2021-09-01 
+date: 2021-08-21 
 description: "基于Apache doris怎么构建数据中台(一)-什么是数据中台"
 tag:  数据中台
 ---
