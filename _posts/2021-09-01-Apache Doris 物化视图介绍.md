@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Apache Doris 物化视图介绍"
+date: 2021-09-01 
+description: "Apache Doris 物化视图介绍"
+tag: doris
+---
+
 # Apache Doris 物化视图介绍
 
 改文章是基于Doris核心开发工程师缪翎在2020年7月线上meetup的PPT整理
