@@ -3,31 +3,17 @@ layout: page
 title: 关于我 
 ---
 
-一个工作6年的 iOS SDK 开发者，在一家游戏公司做SDK开发和维护。
+一个从业了十八年的程序猿，10年大数据开发，碌碌无非，到了不惑之年突然醒悟，该做点什么了，对产品、运营、售前，技术略知一点，目前热衷于开源，特别热衷于Apache doris，数据仓库实践
 
-除了iOS技术，我还一直维护着这个博客，懂一些前端的基础知识。
+<h2> 我的公众号 </h2>  
 
-平时喜欢用python写一些工具，能用工具做的事情坚决不用人工去操作。
+![](/images/gongzhonghao.jpg)
 
-<h2> 我们的博客 </h2>  
+<h2> 我的知乎 </h2>  
 
-这个博客是我们大家的，目前已经有很大一部分人在使用我的博客模板了，我也很高兴大家使用我的模板。
-
-如果你想搭建一个跟我一样的博客，可以看我的 
-<a href="/2016/10/jekyll_tutorials1/"> Jekyll 搭建个人博客 </a>
-教程
+[张峰]: https://www.zhihu.com/people/zhang-feng-68-16-47
 
 
-有关于博客主题的建议和意见都可以提给我，让我们一起来打造一个精美的主题吧~ 
-
-博客源码在 <a target="_blank" href='https://github.com/leopardpan/leopardpan.github.io/'>Github</a> 上，你的 Star 是我更新的动力，谢谢~
-
-
-<h3> 搭建博客遇到了问题解法方法 </h3>  
-
-查看 [技术支持](https://leopardpan.cn/support/) 需求帮助
-
-博客模板会一直持续更新，请持续关注我，谢谢~
 
 {% include comments.html %}
 
