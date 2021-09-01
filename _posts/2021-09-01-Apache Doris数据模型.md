@@ -3,7 +3,7 @@ layout: post
 title: "Apache doris 数据模型"
 date: 2021-09-01 
 description: "Apache doris 数据模型"
-tag: doris
+tag:  Apache Doris
 ---
 
 # Apache doris 数据模型
