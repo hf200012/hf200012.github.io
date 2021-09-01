@@ -9,6 +9,12 @@ title: 关于我
 
 ![](/images/gongzhonghao.jpg)
 
+
+
+<h2> 我的微信 </h2> 
+
+![](/images/20210901175004.jpg)
+
 <h2> 我的知乎 </h2>  
 
 [张峰的知乎主页](https://www.zhihu.com/people/zhang-feng-68-16-47)
