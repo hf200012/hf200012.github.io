@@ -1,14 +1,12 @@
 ---
 layout: post
-title: "Apache Doris安装部署"
-date: 2021-05-10 
-description: "Apache Doris安装部署"
+title: "Apache Doris 安装部署"
+date: 2021-05-12 
+description: "Apache Doris 安装部署"
 tag: Apache Doris
 ---
 
-此文档是笔记方式，没有详细整理，仅供参考,目前社区版本是0.14.0，百度预编译发布版本是0.14.12.4
-
-如果有疑问，可以留言或者加我微信，微信在我个人站里可以找到
+ 此文档是笔记方式，没有详细整理，仅供参考
 
 ### **安装部署**
 
@@ -237,3 +235,4 @@ http://172.22.197.72:8030/system?path=//brokers
  原因：编译doris的时候没有带WITH_MYSQL,Mysql_Odbc需要8.x,如果采用5.x会出现上面错误，切换版本到8.X
       编译如果带WITH_MYSQL,可以采用5.x版本
 ```
+
