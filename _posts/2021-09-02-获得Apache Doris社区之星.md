@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "参与开源两年来的感悟"
+title: "Apache Doris社区之星"
 date: 2021-09-02
-description: "参与开源两年来的感悟"
+description: "Apache Doris社区之星"
 tag: 工作感悟
 ---
 
