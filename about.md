@@ -13,7 +13,7 @@ title: 关于我
 
 <h2> 我的微信 </h2> 
 
-![](/images/20210901175004.jpg)
+<img src="/images/weixin.png" style="zoom:50%;" />
 
 <h2> 我的知乎 </h2>  
 
