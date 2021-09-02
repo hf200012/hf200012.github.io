@@ -11,6 +11,8 @@ title: 技术支持
 
 如果有关于数据仓库建设，Apache Doris 及大数据相关的问题我们也可以一起讨论
 
+如果你在使用 Doris 的过程中遇到使用问题、运维问题等不知道怎么解决，你也可以联系我。
+
 <h3> 欢迎关注我的公众号 </h3> 
 
 ![](/images/gongzhonghao.jpg)
@@ -22,4 +24,3 @@ email：zhangjf1@gmail.com
 <p> 
 微信: 35926237     
 <p> 
-
