@@ -3,7 +3,7 @@ layout: post
 title: "自己开源的一个大数据BI可视化系统(支持Apache Doris)"
 date: 2021-09-02
 description: "自己开源的一个大数据BI可视化系统(支持Apache Doris)"
-tag: Apache Doris , 数据可视化
+tag: 数据可视化
 ---
 
 ## 介绍
