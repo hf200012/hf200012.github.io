@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "基于Apache doris怎么构建数据中台(四)-数据质量管理"
+title: "基于Apache doris怎么构建数据中台(五)-数据质量管理"
 date: 2021-09-02
 description: "基于Apache doris怎么构建数据中台(五)-数据质量管理"
 tag: 数据中台
