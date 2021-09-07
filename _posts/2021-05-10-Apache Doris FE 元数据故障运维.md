@@ -39,7 +39,7 @@ repImpl=com.sleepycat.je.rep.impl.RepImpl@68fa4d19 props={REFRESH_VLSN=17921230,
 
 1. 停止所有load任务
 2. 删除元数据目录，并重建目录
-3. 从master节点拷贝元数据到问题节点fe（将 fe.conf 中的 metadata_failure_recovery=true 配置项删除，或者设置为 false，**这个非常重要**），注意要修改image/VERSION 里的name,拷贝过来的是master的名称，改成该节点的名称
+3. 从master节点拷贝元数据到问题节点fe（将 fe.conf 中的 metadata_failure_recovery=true 配置项删除，或者设置为 false，**这个非常重要**），注意要修改image/ROLE 里的name,拷贝过来的是master的名称，改成该节点的名称
 4. 执行 ALTER SYSTEM DROP FOLLOWER 删除改节点
 5. 在问题节点使用--helper启动服务
 6. 在mysql下执行 ALTER SYSTEM ADD FOLLOWER 将FE节点从新加入进去
