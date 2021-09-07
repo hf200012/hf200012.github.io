@@ -5,8 +5,6 @@ date: 2021-09-07
 description: "Apache doris 排序键及ShortKey Index"
 tag: Apache Doris
 ---
-# Apache doris 排序键及 ShortKey Index
-
 ## 1.排序列的原理
 
 Apache Doris中为加速查询，在内部组织并存储数据时，会把表中数据按照指定的列进行排序，这部分用于排序的列（可以是一个或多个列），可以称之为Sort Key。**明细模型**中Sort Key就是指定的用于排序的列（即 DUPLICATE KEY 指定的列），**聚合模型**中Sort Key列就是用于聚合的列（即 AGGREGATE KEY 指定的列），**唯一主键模型**中Sort Key就是指定的满足唯一性约束的列（即 UNIQUE KEY 指定的列）。下图中的建表语句中Sort Key都为 (site_id、city_code)。
