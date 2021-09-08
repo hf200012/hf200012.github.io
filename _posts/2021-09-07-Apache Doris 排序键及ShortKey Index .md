@@ -7,7 +7,7 @@ tag: Apache Doris
 ---
 ## 1.排序列的原理
 
-Apache Doris中为加速查询，在内部组织并存储数据时，会把表中数据按照指定的列进行排序，这部分用于排序的列（可以是一个或多个列），可以称之为Sort Key。**明细模型**中Sort Key就是指定的用于排序的列（即 DUPLICATE KEY 指定的列），**聚合模型**中Sort Key列就是用于聚合的列（即 AGGREGATE KEY 指定的列），**唯一主键模型**中Sort Key就是指定的满足唯一性约束的列（即 UNIQUE KEY 指定的列）。下图中的建表语句中Sort Key都为 (site_id、city_code)。
+Apache Doris中为加速查询，在内部组织并存储数据时，会把表中数据按照指定的列进行排序，这部分用于排序的列（可以是一个或多个列），可以称之为Sort Key。**明细模型**中Sort Key就是指定的用于排序的列（即 DUPLICATE KEY 指定的列），**聚合模型**中Sort Key列就是用于聚合的列（即 AGGREGATE KEY 指定的列），**唯一主键模型**中Sort Key就是指定的满足唯一性约束的列（即 UNIQUE KEY 指定的列）。下图中的建表语句中Sort Key都为 (`user_id, date, city, age, sex`)。
 
 ```sql
 CREATE TABLE user_access_dup
@@ -22,7 +22,6 @@ CREATE TABLE user_access_dup
     `cost` BIGINT DEFAULT "0" COMMENT "用户总消费",
     `max_dwell_time` INT DEFAULT "0" COMMENT "用户最大停留时间",
     `min_dwell_time` INT DEFAULT "99999" COMMENT "用户最小停留时间"
-     pv BIGINT DEFAULT '0'
 )
 DUPLICATE KEY(user_id, date, city, age, sex)
 DISTRIBUTED BY HASH(city) BUCKETS 10;
@@ -39,7 +38,6 @@ CREATE TABLE user_access_agg
     `cost` BIGINT SUM DEFAULT "0" COMMENT "用户总消费",
     `max_dwell_time` INT MAX DEFAULT "0" COMMENT "用户最大停留时间",
     `min_dwell_time` INT MIN DEFAULT "99999" COMMENT "用户最小停留时间"
-     pv BIGINT SUM DEFAULT '0'
 )
 AGGREGATE KEY(user_id, date, city, age, sex)
 DISTRIBUTED BY HASH(city) BUCKETS 10;
@@ -56,8 +54,6 @@ CREATE TABLE user_access_unique
     `cost` BIGINT DEFAULT "0" COMMENT "用户总消费",
     `max_dwell_time` INT DEFAULT "0" COMMENT "用户最大停留时间",
     `min_dwell_time` INT EFAULT "99999" COMMENT "用户最小停留时间"
-     pv BIGINT DEFAULT '0'
-     pv BIGINT DEFAULT '0'
 )
 UNIQUE KEY(user_id, date, city, age, sex)
 DISTRIBUTED BY HASH(city) BUCKETS 10;
@@ -65,7 +61,7 @@ DISTRIBUTED BY HASH(city) BUCKETS 10;
 
 各表数据都依照user_id, date, city, age, sex这四列排序。这里有两点需要注意：
 
-1. 排序列的定义必须出现在建表语句中其他列的定义之前。的建表语句为例，三个表的排序列可以是user_id, date, city, age, sex，或者user_id, date, city, age, sex,user_name，但不能是user_id, date, city, ,user_name，或者user_id, date, city, age, sex,pv。
+1. 排序列的定义必须出现在建表语句中其他列的定义之前。的建表语句为例，三个表的排序列可以是`user_id, date, city, age, sex`，或者`user_id, date, city, age, sex,user_name`，但不能是`user_id, date, city, ,user_name`，或者`user_id, date, city, age, sex`。
 2. 排序列的顺序是由create table语句中的列顺序决定的。DUPLICATE/UNIQUE/AGGREGATE KEY中顺序需要和create table语句保持一致。以user_access_dup表为例，也就是说下面的建表语句会报错。
 
 ```sql
@@ -82,7 +78,6 @@ CREATE TABLE user_access_dup
     `cost` BIGINT DEFAULT "0" COMMENT "用户总消费",
     `max_dwell_time` INT DEFAULT "0" COMMENT "用户最大停留时间",
     `min_dwell_time` INT EFAULT "99999" COMMENT "用户最小停留时间"
-     pv BIGINT DEFAULT '0'
 )
 DUPLICATE KEY(date,user_id,city,age,sex)
 DISTRIBUTED BY HASH(city) BUCKETS 10;
@@ -100,8 +95,6 @@ CREATE TABLE user_access_dup
     `cost` BIGINT DEFAULT "0" COMMENT "用户总消费",
     `max_dwell_time` INT DEFAULT "0" COMMENT "用户最大停留时间",
     `min_dwell_time` INT EFAULT "99999" COMMENT "用户最小停留时间"
-     pv BIGINT DEFAULT '0'
-     pv BIGINT DEFAULT '0'
 )
 DUPLICATE KEY(user_id, date, city, age, sex)
 DISTRIBUTED BY HASH(city) BUCKETS 10;
@@ -139,7 +132,7 @@ DUPLICATE KEY列顺序与CREATE TABLE中不一致
 
 ## 2. 如何选择排序列
 
-从上面的介绍可以看出，如果用户在查询site_access_duplicate表时只选择city_code做查询条件，排序列相当于失去了功效。因此排序列的选择是和查询模式息息相关的，经常作为查询条件的列建议放在Sort Key中。
+从上面的介绍可以看出，如果用户在查询user_access_dup表时只选择`city`做查询条件，排序列相当于失去了功效。因此排序列的选择是和查询模式息息相关的，经常作为查询条件的列建议放在Sort Key中。
 
 
 
@@ -149,7 +142,7 @@ DUPLICATE KEY列顺序与CREATE TABLE中不一致
 
 还是以`user_access_dup`表为例：
 
-- 如果用户需要经常按`user_id + date + city + age + sex`的组合进行查询，那么把user_id 放在Sort Key第一列就是更加有效的一种方式。
+- 如果用户需要经常按`user_id + date + city + age + sex`的组合进行查询，那么把`user_id `放在Sort Key第一列就是更加有效的一种方式。
 - 如果用户需要经常用  `city`进行查询，偶尔按照` user_id + date +  city +  age + sex` 组合查询，那么把 `city` 放在 Sort Key 的第一列就更为合适。
 - 当然有一种极端情况，就是按`user_id + date `组合查询、以及`city + date` 查询的比例不相上下。那么这个时候，可以创建一个`city + date `为组合 key 的 RollUp 表，RollUp表会为`city，date `再建一个Sort Index。
 
