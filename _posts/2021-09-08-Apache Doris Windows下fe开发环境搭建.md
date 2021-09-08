@@ -1,4 +1,11 @@
-# apache doris windows下fe开发环境搭建
+---
+layout: post
+title: "Apache Doris Windows 下 fe 开发环境搭建"
+date: 2021-09-08
+description: "Apache Doris Windows 下 fe 开发环境搭建"
+tag: Apache Doris
+---
+# Apache Doris Windows 下 fe 开发环境搭建
 
 ## 1.环境准备
 
