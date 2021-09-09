@@ -6,7 +6,7 @@ description: "Apache Doris ODBC mysql外表注意事项"
 tag: Apache Doris
 ---
 
- 前面一篇文章介绍了[Apache doris ODBC外表使用方式]([Apache doris ODBC外表使用方式 (hf200012.github.io)](https://hf200012.github.io/2021/09/Apache-doris-ODBC外表使用方式/))，这里要说的是在使用Mysql的ODBC外表的时候要注意事项：
+ 前面一篇文章介绍了[Apache doris ODBC外表使用方式](https://hf200012.github.io/2021/09/Apache-doris-ODBC外表使用方式/)，这里要说的是在使用Mysql的ODBC外表的时候要注意事项：
 
 1. mysql数据库及表的字符集一定要是用UTF8，不要使用UTF8mb4，目前doris ODBC外表只支持UTF8编码
 2. 在doris BE节点配置conf/odbcinst.ini，这里配置
