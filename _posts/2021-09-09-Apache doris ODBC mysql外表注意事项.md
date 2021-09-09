@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Apache Doris ODBC mysql外表注意事项"
-date: 2021-05-12 
+date: 2021-09-09 
 description: "Apache Doris ODBC mysql外表注意事项"
 tag: Apache Doris
 ---

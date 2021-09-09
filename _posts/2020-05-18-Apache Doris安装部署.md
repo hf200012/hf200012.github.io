@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Apache Doris 安装部署"
-date: 2021-05-12 
+date: 2020-05-12 
 description: "Apache Doris 安装部署"
 tag: Apache Doris
 ---
