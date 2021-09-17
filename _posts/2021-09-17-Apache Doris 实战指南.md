@@ -2,7 +2,7 @@
 layout: post
 title: "Apache Doris 实战指南"
 date: 2021-09-17
-description: "Apache Doris实战指南"
+description: "Apache Doris 实战指南"
 tag: Apache Doris
 ---
 # 1.Apache Doris 介绍
