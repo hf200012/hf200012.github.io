@@ -21,7 +21,7 @@ tag: Apache Doris
 
 [Apache Doris FE使用ProxySQL实现负载均衡 ](https://hf200012.github.io/2021/09/Apache-doris-FE使用ProxySQL实现负载均衡/)
 
-# 3. Apache Doris 使用
+# 3. Apache Doris 模型介绍
 
 ## 3.1 Doris 数据模型
 
@@ -34,6 +34,16 @@ tag: Apache Doris
 ## 3.3 Doris 物化视图及Rollup
 
 [Apache Doris 物化视图介绍](https://hf200012.github.io/2021/09/Apache-Doris-物化视图介绍/)
+
+## 3.4 RuntimeFilter 原理及使用
+
+## 3.5 Doris 数据动态分区使用
+
+## 3.6 Doris 索引
+
+[Apache doris 排序键及ShortKey Index](https://hf200012.github.io/2021/09/Apache-Doris-排序键及ShortKey-Index/)
+
+# 4. Apache Doris使用实战
 
 ## 3.4 Doris数据导入
 
@@ -53,19 +63,11 @@ tag: Apache Doris
 
 ### 3.5.2 查询结果导出
 
-## 3.6 RuntimeFilter 原理及使用
+## 3.6 Doris数据删除
 
-## 3.7 Doris数据表动态分区使用
+## 3.7 Doris数据更新
 
-## 3.8 Doris数据删除
-
-## 3.9 Doris数据更新
-
-## 3.10 Doris 索引
-
-[Apache doris 排序键及ShortKey Index](https://hf200012.github.io/2021/09/Apache-Doris-排序键及ShortKey-Index/)
-
-# 4. Apache Doris Join使用及原理
+# 4. Apache Doris Join 原理及使用
 
 ## 4.1 Colocation Join
 
@@ -105,27 +107,25 @@ tag: Apache Doris
 
 # 7.基于Apache Doris数据中台实践
 
-[基于Apache doris怎么构建数据中台(一)-什么是数据中台](https://hf200012.github.io/2021/08/基于Apache-doris怎么构建数据中台(一)-什么是数据中台/)
+## 7.1 数据中台构建内容
 
-[基于Apache doris怎么构建数据中台(二)-数据中台建设内容](https://hf200012.github.io/2021/08/基于Apache-doris怎么构建数据中台(二)-数据中台建设内容/)
+### 7.1.1 什么是数据中台
 
-[基于Apache doris怎么构建数据中台(三)-数据资产管理 ](https://hf200012.github.io/2021/08/基于Apache-doris怎么构建数据中台(三)-数据资产管理/)
+### 7.1.2 数据中台构建内容
 
-[基于Apache Doris 怎么构建元数据管理系统](https://hf200012.github.io/2021/08/元数据管理系统/)
+## 7.2 基于Doris的元数据管理系统构建
 
-[基于Apache doris怎么构建数据中台(四)-数据接入系统 ](https://hf200012.github.io/2021/08/基于Apache-doris怎么构建数据中台(四)-数据接入系统/)
+## 7.3 怎么基于Doris零代码实现数据快速接入
 
-[基于Apache doris怎么构建数据中台(五)-数据质量管理](https://hf200012.github.io/2021/09/基于Apache-doris怎么构建数据中台(五)-数据质量/)
+## 7.4 基于规则的数据质量引擎构建
 
-[基于Apache doris怎么构建数据中台(六)-数据服务管理](https://hf200012.github.io/2021/09/基于Apache-doris怎么构建数据中台(六)-数据服务/)
+## 7.5 基于Doris零代码实现数据服务快速开发
 
-[基于Apache-doris怎么构建数据中台(七)-数据指标管理](https://hf200012.github.io/2021/09/基于Apache-doris怎么构建数据中台(七)-数据指标管理/)
+## 7.6 基于Doris的数据指标体系构建
 
-[如何构建公司的数据指标体系](https://hf200012.github.io/2021/07/如何构建公司的数据指标体系/)
+## 7.7 Doris的数仓管理设计
 
-[基于Apache-doris怎么构建数据中台(八)-数仓管理](https://hf200012.github.io/2021/09/基于Apache-doris怎么构建数据中台(八)-数仓管理/)
-
-[基于Apache Doris 数据仓库分层设计及设计规范](https://mp.weixin.qq.com/s?__biz=MzI4ODMyNTcwMw==&mid=2247484053&idx=1&sn=4d7ac627977feeddc22f6e1e4edb8771&chksm=ebc16bbddcb6e2ab55b68e3c30e91eff4618d0229afb709e0ab249968f0c42992ad74d81e2c5&scene=21#wechat_redirect)
+## 7.8 数据安全设计
 
 # 8.Doris 日常使用问题答疑
 
