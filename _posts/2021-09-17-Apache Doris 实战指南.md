@@ -77,23 +77,23 @@ tag: Apache Doris
 
 ## 1.6 Apache Doris 扩展组件介绍及使用
 
-#### 1.6.1 Spark Doris Connector 
+### 1.6.1 Spark Doris Connector 
 
-#### 1.6.2 Flink Doris Connector
+### 1.6.2 Flink Doris Connector
 
-#### 1.6.3 Datax DorisWriter 
+### 1.6.3 Datax DorisWriter 
 
-#### 1.6.4 Doris 日志审计插件
+### 1.6.4 Doris 日志审计插件
 
-#### 1.6.5 Doris to logstash 插件
+### 1.6.5 Doris to logstash 插件
 
-#### 1.6.6 Doris ODBC 外表
+### 1.6.6 Doris ODBC 外表
 
 [Apache doris ODBC外表使用方式 ](https://hf200012.github.io/2021/09/Apache-doris-ODBC外表使用方式/)
 
 [Apache Doris ODBC mysql外表注意事项 ](https://hf200012.github.io/2021/09/Apache-doris-ODBC-mysql外表注意事项/)
 
-#### 1.6.7 Doris On ElasticSearch
+### 1.6.7 Doris On ElasticSearch
 
 # 第二部分 基于Doris的数据中台实践
 
