@@ -17,6 +17,8 @@ tag: Apache Doris
 
 [Apache Doris 环境编译安装部署 ](https://hf200012.github.io/2021/09/Apache-Doris-环境安装部署/)
 
+[Apache Doris 升级手册 ](https://hf200012.github.io/2021/09/Apache-Doris-升级手册/)
+
 [使用supervisor实现Apache Doris进程自动拉起](https://hf200012.github.io/2020/12/使用supervisor实现Apache-Doris进程自动拉起/)
 
 ### 1.2.2 Doris FE 高可用及负载均衡
