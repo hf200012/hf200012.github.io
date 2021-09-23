@@ -91,6 +91,8 @@ tag: Apache Doris
 
 ### 1.6.3 Datax DorisWriter 
 
+[Apache Doris Datax DorisWriter扩展使用方法 ](https://hf200012.github.io/2021/09/Apache-doris-Datax-DorisWriter扩展使用方法/)
+
 ### 1.6.4 Doris 日志审计插件
 
 ### 1.6.5 Doris to logstash 插件
