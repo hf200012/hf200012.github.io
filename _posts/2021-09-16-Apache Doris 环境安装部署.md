@@ -74,7 +74,7 @@ docker run -it --name doris-build-1.3.1 -v /root/.m2:/root/.m2 -v /root/doris/:/
 
 编译好的安装包在源码根目录：output目录下，拷贝出来就是可以安装了
 
-![image-20210916142645653](C:\Users\zhang\AppData\Roaming\Typora\typora-user-images\image-20210916142645653.png)
+![image-20210916142645653](/images/install/image-20210916142645653.png)
 
 #### 1.2.3 编译Doris Broker
 
