@@ -17,7 +17,7 @@ Broker load 支持文件类型：文本和JSON两个格式的数据
 
 ## 2. 原理
 
-<img src="/images/load/image-20210923135724261.png" style="zoom:50%;" />
+<img src="/images/load/image-20210903132250723.png" style="zoom:50%;" />
 
 Stream Load请求FE和BE两种方式，连接FE或者直接连接BE方式
 

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "基于Apache-doris怎么构建数据中台(七)-数据指标管理"
+title: "基于Apache Doris怎么构建数据中台(七)-数据指标管理"
 date: 2021-09-08
-description: "基于Apache-doris怎么构建数据中台(七)-数据指标管理"
+description: "基于Apache Doris怎么构建数据中台(七)-数据指标管理"
 tag: 数据中台
 ---
 ## 指标体系定义
