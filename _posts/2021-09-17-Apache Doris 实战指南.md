@@ -61,9 +61,11 @@ tag: Apache Doris
 
 #### 3.4.1.3 Spark load 使用
 
-#### 3.4.1.4 Insert into
+#### 3.4.1.4 Spark load 使用
 
-#### 3.4.1.5 JSON格式数据导入
+[Apache Doris Stream Load数据导入 ](https://hf200012.github.io/2021/09/Apache-Doris-Stream-Load数据导入/)
+
+#### 3.4.1.5 Insert into
 
 ### 1.4.2 数据导出
 
