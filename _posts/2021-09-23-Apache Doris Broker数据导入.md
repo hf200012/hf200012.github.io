@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Apache Doris Broker 数据导入"
-date: 2021-09-22
+date: 2021-09-23
 description: "Apache Doris Broker 数据导入"
 tag: Apache Doris
 ---
@@ -27,7 +27,7 @@ Broker load 支持文件类型：PARQUET、ORC、CSV格式
 
 BE 在执行的过程中会从 Broker 拉取数据，在对数据 transform 之后将数据导入系统。所有 BE 均完成导入，由 FE 最终决定导入是否成功
 
-<img src="C:\Users\zhang\AppData\Roaming\Typora\typora-user-images\image-20210922153814143.png" style="zoom:50%;" />
+<img src="/images/load/image-20210922153814143.png" style="zoom:50%;" />
 
 ## 3. 使用方式
 
@@ -353,7 +353,7 @@ Label 的另一个作用，是防止用户重复导入相同的数据。**强烈
   
   示例：
   
-  ```text
+  ```sql
   (tmp_c1,tmp_c2)
   SET
   (
@@ -361,6 +361,10 @@ Label 的另一个作用，是防止用户重复导入相同的数据。**强烈
       name=tmp_c1
   )
   ```
+
+代表获取在parquet或orc中以(tmp_c1, tmp_c2)为列名的列，映射到doris表中的(id, name)列。如果没有设置set, 则以column中的列作为映射
+
+
 
 #### 3.4.3 导入作业参数
 
