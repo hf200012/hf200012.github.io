@@ -33,6 +33,8 @@ BE 在执行的过程中会从 Broker 拉取数据，在对数据 transform 之�
 
 Apache Doris Broker Load方式是通过 doris 提供的 Broker load SQL语句创建。
 
+`Broker支持同时导入多张表，后面会有示例演示`
+
 ### 3.1 SQL 语法
 
 下面是 SQL 语法，具体使用不清楚的地方也可以在Mysql Client 命令行下执行 `help broker load`查看具体使用方法
@@ -60,7 +62,9 @@ WITH BROKER broker_name broker_properties
     (key1=value1, ...)
 ```
 
-### 3.2 实例
+### 3.2 示例
+
+#### 3.2.1 Hive分区表使用Broker方式
 
 这里我们使用Broker load方式，从hive 分区表中将数据导入到Doris指定的表中
 
@@ -199,6 +203,51 @@ PROPERTIES
 ```
 
 然后提交任务就行了
+
+#### 3.2.2 HDFS 文本文件导入（多表导入）
+
+```sql
+1.创建表
+CREATE TABLE `test1` (
+  `id` int,
+  `name` varchar(11)
+) 
+DISTRIBUTED BY HASH(id) BUCKETS 2
+PROPERTIES( 
+"replication_num" = "2"
+);
+
+CREATE TABLE `test2` (
+  `col1` int,
+  `col2` varchar(11)
+) 
+DISTRIBUTED BY HASH(id) BUCKETS 2
+PROPERTIES( 
+"replication_num" = "2"
+);
+2.创建LABEL
+LOAD LABEL example_db.label1
+(
+    ---导入test1 表
+    DATA INFILE("hdfs://10.220.147.151:8020/tmp/palo/file")
+    INTO TABLE test1
+    COLUMNS TERMINATED BY ","
+    (id,name)
+    ,
+    ---导入test2表
+    DATA INFILE("hdfs://10.220.147.151:8020/tmp/palo/file1")
+    INTO TABLE test2
+    COLUMNS TERMINATED BY ","
+    (col1, col2)
+)
+WITH BROKER 'broker_name_2'
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+```
+
+
 
 ### 3.3 认证方式
 
