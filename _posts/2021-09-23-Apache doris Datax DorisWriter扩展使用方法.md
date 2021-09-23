@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Apache Doris Datax DorisWriter扩展使用方法"
-date: 2021-09-17
+date: 2021-09-23
 description: "Apache Doris Datax DorisWriter扩展使用方法"
 tag: Apache Doris
 ---
