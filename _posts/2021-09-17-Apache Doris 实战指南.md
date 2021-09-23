@@ -61,7 +61,7 @@ tag: Apache Doris
 
 #### 3.4.1.3 Spark load 使用
 
-#### 3.4.1.4 S他ream load 使用
+#### 3.4.1.4 Stream load 使用
 
 [Apache Doris Stream Load数据导入 ](https://hf200012.github.io/2021/09/Apache-Doris-Stream-Load数据导入/)
 
