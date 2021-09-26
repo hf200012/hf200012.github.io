@@ -194,5 +194,5 @@ bin/start-cluster.sh
 
 ## 5.总结
 
-我们到这里整个的演示就结束了，使用Doris flink connector可以很容易的通过Flink SQL方式整合各种异构数据源，导入到Doris数仓中，非常大方便。
+我们到这里整个的演示就结束了，使用Doris flink connector可以很容易的通过Flink SQL方式整合各种异构数据源，导入到Doris数仓中，非常的方便。
 
