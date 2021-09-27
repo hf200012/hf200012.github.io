@@ -43,6 +43,8 @@ tag: Apache Doris
 
 ### 1.3.5 Doris 数据动态分区使用
 
+[Apache Doris 动态分区介绍及使用方法 ](https://hf200012.github.io/2021/09/Apache-Doris-动态分区介绍及使用方法/)
+
 ### 1.3.6 Doris 索引
 
 [Apache doris 排序键及ShortKey Index](https://hf200012.github.io/2021/09/Apache-Doris-排序键及ShortKey-Index/)
