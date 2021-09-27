@@ -69,6 +69,10 @@ tag: Apache Doris
 
 #### 3.4.1.5 Insert into
 
+#### 3.4.1.6 数据更新顺序保证
+
+[Apache Doris Sequence介绍及使用方法 ](https://hf200012.github.io/2021/09/Apache-Doris-sequence介绍及使用方法/)
+
 ### 1.4.2 数据导出
 
 #### 1.4.2.1 Export 导出
