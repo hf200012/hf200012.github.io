@@ -87,6 +87,8 @@ tag: Apache Doris
 
 ### 1.4.4 Doris数据更新
 
+[Apache doris 数据更新操作](https://hf200012.github.io/2021/09/Apache-Doris-数据更新操作/)
+
 ## 1.5 Apache Doris Join 原理及使用
 
 ### 1.5.1 Colocation Join
