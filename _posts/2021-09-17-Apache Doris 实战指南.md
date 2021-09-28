@@ -41,6 +41,8 @@ tag: Apache Doris
 
 ### 1.3.4 RuntimeFilter 原理及使用
 
+[Apache Doris RuntimeFilter 原理及使用 ](https://hf200012.github.io/2021/09/Apache-Doris-RuntimeFilter-原理及使用/)
+
 ### 1.3.5 Doris 数据动态分区使用
 
 [Apache Doris 动态分区介绍及使用方法 ](https://hf200012.github.io/2021/09/Apache-Doris-动态分区介绍及使用方法/)
