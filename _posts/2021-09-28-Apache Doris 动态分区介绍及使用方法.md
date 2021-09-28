@@ -258,7 +258,7 @@ PROPERTIES
 SHOW DYNAMIC PARTITION TABLES;
 ```
 
-![image-20210927165732832](C:\Users\zhang\AppData\Roaming\Typora\typora-user-images\image-20210927165732832.png)
+![image-20210927165732832](/images/load/image-20210927165732832.png)
 
 - LastUpdateTime: 最后一次修改动态分区属性的时间
 - LastSchedulerTime: 最后一次执行动态分区调度的时间
