@@ -107,6 +107,8 @@ tag: Apache Doris
 
 ### 1.6.4 Doris 日志审计插件
 
+[Apache doris sql日志审计 ](https://hf200012.github.io/2021/09/Apache-Doris-SQL日志审计/)
+
 ### 1.6.5 Doris to logstash 插件
 
 ### 1.6.6 Doris ODBC 外表
