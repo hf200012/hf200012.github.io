@@ -94,7 +94,7 @@ properties(
 );
 ```
 
-其中 `dynamic_partition` 属性根据自己的需要，选择审计日志安保留的天数。
+其中 `dynamic_partition` 属性根据自己的需要，选择审计日志保留的天数。
 
 之后，连接到 Doris 后使用 `INSTALL PLUGIN` 命令完成安装。安装成功后，可以通过 `SHOW PLUGINS` 看到已经安装的插件，并且状态为 `INSTALLED`。
 
