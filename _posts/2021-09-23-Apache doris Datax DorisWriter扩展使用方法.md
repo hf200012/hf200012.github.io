@@ -93,6 +93,10 @@ DataX 是阿里云 DataWorks数据集成 的开源版本，在阿里巴巴集团
  提取码：3azi
 ```
 
+1. 下载 [alibaba-datax-maven-m2-20210928.tar.gz](https://doris-thirdparty-repo.bj.bcebos.com/thirdparty/alibaba-datax-maven-m2-20210928.tar.gz)
+  2. 解压后，将得到的 `alibaba/datax/` 目录，拷贝到所使用的 maven 对应的 `.m2/repository/com/alibaba/` 下。
+  3. 再次尝试编译。
+
 ## 3.数据接入
 
 这个时候我们就可以开始使用 Datax 的doriswriter扩展开始从 Mysql（或者其他数据源）直接将数据抽取出来导入到 Doris 表中了。
