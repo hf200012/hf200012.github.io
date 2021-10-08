@@ -97,6 +97,8 @@ tag: Apache Doris
 
 ### 1.5.2 Bucket Shuffle Join
 
+[Apache Doris Bucket Shuffle Join 原理及使用](https://hf200012.github.io/2021/10/Apache-Doris-Bucket-Shuffle-Join-原理及使用/)
+
 ## 1.6 Apache Doris 扩展组件介绍及使用
 
 ### 1.6.1 Spark Doris Connector 
