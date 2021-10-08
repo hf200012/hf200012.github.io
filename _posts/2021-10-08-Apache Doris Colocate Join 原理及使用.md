@@ -100,7 +100,7 @@ CG 内所有表的数据都会按照上面的规则进行统一分布，这样�
 
 示例：
 
-```text
+```sql
 CREATE TABLE tbl (k1 int, v1 int sum)
 DISTRIBUTED BY HASH(k1)
 BUCKETS 8
@@ -240,6 +240,12 @@ PROPERTIES (
     "colocate_with" = "group1"
 );
 ```
+
+> **注意**：
+
+> 1. 这里的表1和表2的AGGREGATE KEY都是`k1,k2`,分桶列都是`k2`,分桶数都是8，如果分同列和分桶数不一致，那么Colocate Join将不起作用
+> 2. 同时也要保持两张表的副本数数一致的
+> 3. colocate_with的名称也要一致。
 
 查看查询计划：
 
