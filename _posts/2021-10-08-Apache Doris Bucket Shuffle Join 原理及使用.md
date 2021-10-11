@@ -21,14 +21,14 @@ Bucket Shuffle Join 和 Colocate Join的区别在于：Colocate Join是本地计
 
 ## 3.原理
 
-Doris支持的常规分布式Join方式包括了shuffle join 和broadcast join。这两种join都会导致不小的网络开销:
+Doris支持的常规分布式Join方式包括了shuffle join 和 broadcast join。这两种join都会导致不小的网络开销:
 
 举个例子，当前存在A表与B表的Join查询，它的Join方式为HashJoin，不同Join类型的开销如下：
 
 - **Broadcast Join**: 如果根据数据分布，查询规划出A表有3个执行的HashJoinNode，那么需要将B表全量的发送到3个HashJoinNode，那么它的网络开销是`3B`，它的内存开销也是`3B`。
 - **Shuffle Join**: Shuffle Join会将A，B两张表的数据根据哈希计算分散到集群的节点之中，所以它的网络开销为 `A + B`，内存开销为`B`。
 
-在FE之中保存了Doris每个表的数据分布信息，如果join语句命中了表的数据分布列，我们应该使用数据分布信息来减少join语句的网络与内存开销，这就是Bucket Shuffle Join的思路来源。
+在Doris FE 元数据中保存了 Doris 中每个表的数据分布信息，如果 Join 语句命中了表的数据分布列，我们应该使用数据分布信息来减少join语句的网络与内存开销，这就是Bucket Shuffle Join的思路来源。
 
 ![image.png](/images/bucket_shuffle_join.png)
 
