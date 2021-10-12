@@ -105,6 +105,8 @@ tag: Apache Doris
 
 ### 1.6.1 Spark Doris Connector 
 
+[Spark Doris Connector设计方案 ](https://hf200012.github.io/2021/10/Apache-Doris-Spark-Connector设计方案/)
+
 ### 1.6.2 Flink Doris Connector
 
 [Flink Doris Connector设计方案](https://hf200012.github.io/2021/10/Apache-Doris-Flink-Connector设计方案/)

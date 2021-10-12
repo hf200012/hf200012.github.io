@@ -124,6 +124,45 @@ kafkaSource.selectExpr("CAST(key AS STRING)", "CAST(value as STRING)")
   .awaitTermination()
 ```
 
+### 2.3 适用场景
+
+#### 2.3.1 处理历史数据变更
+
+在没有Spark Doris Connector前，Doris修改数据的成本很高，但数据的修改和删除需求在真实业务中时常出现。
+
+![img](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20210205_2fda52a4-6787-11eb-a9c2-5254001c05fe.png)
+
+
+
+**Spark Doris Connector之前**
+
+方案一：之前导入的错误数据不要删除，采用replace的方式，将错误的数据全部倒入一份负值的，从而将value刷成0，再将正确的数据导入进去。
+
+方案二：把错误数据删除，然后再将正确数据insert进来。
+
+上述方案都存在一个问题，即总有一段时间窗口内数据value为0。这对于外部系统来说是不能容忍的。例如广告主需要查看自己的账户信息，如果因数据变更问题而导致账户显示为0，将是难以接受的，很不友好。
+
+**Spark Doris Connector方案**
+
+有了Spark Doris Connector，处理历史数据变更将会更加便捷
+
+
+![img](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20210205_2ff9dc82-6787-11eb-a9c2-5254001c05fe.png)
+
+
+
+如上图所示，第一行是错误数据，第二行是正确数据。Spark可以链接两条流，一条流使用Spark Doris Connector连接Doris，一条流连接外部的正确数据（例如业务部门生成的Parquet文件）。在Spark中做diff操作，将所有value算出diff值，即图中最后一行的结果。将其导入进Doris即可。这样的好处是可以消除中间的时间窗口，同时也便于平时经常使用Spark的业务方来进行操作，非常友好。
+
+使用Spark对Doris中的数据和其他数据源进行联合分析
+
+很多业务部门会将自己的数据放在不同的存储系统上，比如一些在线分析、报表的数据放在Doris中，一些结构化检索数据放在Elasticsearch中、一些需要事物的数据放在MySQL中，等等。业务往往需要跨多个存储源进行分析，通过Spark Doris Connector打通Spark和Doris后，业务可以直接使用Spark，将Doris中的数据与多个外部数据源做联合查询计算。
+
+![img](/images/connector/modb_20210205_301bf29a-6787-11eb-a9c2-5254001c05fe.png)
+
+#### 2.3.2 数据实时处理写入
+
+目前Spark doris connector 支持通过SQL，DataFrame方式对从数据源中读取数据，通过SQL和DataFrame把数据写入到doris中。同时还可以利用Spark的计算能力对数据进行一些实时计算。
+
 ## 3.相关配置参数
 
 ### 3.1 通用配置
