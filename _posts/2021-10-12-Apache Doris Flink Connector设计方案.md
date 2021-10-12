@@ -11,18 +11,18 @@ tag: Apache Doris
 
 从我们业务架构出发和业务需求，我们选择了Flink作为我们架构的一部分，用于数据的ETL及实时计算框架，社区目前支持Spark doris connector，因此我们参照Spark doris connector 设计开发了Flink doris Connector。
 
-## 技术选型
+## 1.技术选型
 
 一开始我们选型的时候，也是和Spark Doris Connector 一样，开始考虑的是JDBC的方式，但是这种方式就像Spark doris connector那篇文章中说的，有优点，但是缺点更明显。后来我们阅读及测试了Spark的代码，决定站在巨人的肩上来实现
 
 于是我们开发了针对Doris的新的Datasource，Flink-Doris-Connector。这种方案下，Doris可以暴露Doris数据分布给Flink。Flink的Driver访问Doris的FE获取Doris表的Schema和底层数据分布。之后，依据此数据分布，合理分配数据查询任务给Executors。最后，Flink的Executors分别访问不同的BE进行查询。大大提升了查询的效率
 
 
-## 使用方法
+## 2.使用方法
 
 在Doris的代码库的 extension/flink-doris-connector/ 目录下编译生成doris-flink-1.0.0-SNAPSHOT.jar，将这个jar包加入flink的ClassPath中，即可使用Flink-on-Doris功能了
 
-#### SQL方式
+#### 2.1 SQL方式
 
 支持功能：
 
@@ -69,7 +69,7 @@ tag: Apache Doris
         tEnv.executeSql("select count(1) from test_aggregation01");
 ```
 
-#### DataStream方式
+#### 2.2 DataStream方式
 
 ```java
 DorisOptions.Builder options = DorisOptions.builder()
@@ -80,7 +80,7 @@ DorisOptions.Builder options = DorisOptions.builder()
 env.addSource(new DorisSourceFunction<>(options.build(),new SimpleListDeserializationSchema())).print();
 ```
 
-## 适用场景
+## 3.适用场景
 
 
 
@@ -88,11 +88,11 @@ env.addSource(new DorisSourceFunction<>(options.build(),new SimpleListDeserializ
 
 
 
-#### 1.使用Flink对Doris中的数据和其他数据源进行联合分析
+#### 3.1 使用Flink对Doris中的数据和其他数据源进行联合分析
 
 很多业务部门会将自己的数据放在不同的存储系统上，比如一些在线分析、报表的数据放在Doris中，一些结构化检索数据放在Elasticsearch中、一些需要事物的数据放在MySQL中，等等。业务往往需要跨多个存储源进行分析，通过Flink Doris Connector打通Flink和Doris后，业务可以直接使用Flink，将Doris中的数据与多个外部数据源做联合查询计算。
 
-#### 2.实时数据接入
+#### 3.2 实时数据接入
 
 Flink Doris Connector之前：针对业务不规则数据，经常需要针对消息做规范处理，空值过滤等写入新的topic，然后再启动Routine load写入Doris。
 
@@ -104,17 +104,17 @@ Flink Doris Connector之后：flink读取kafka，直接写入doris。
 
 
 
-## 技术实现
+## 4.技术实现
 
-### 架构图
+### 4.1架构图
 
 ![1616997396610](/images/connector/Flink-doris-connector4.png)
 
 
 
-### Doris对外提供更多能力
+### 4.2 Doris对外提供更多能力
 
-#### Doris FE
+#### 4.2.1 Doris FE
 
 对外开放了获取内部表的元数据信息、单表查询规划和部分统计信息的接口。
 
@@ -134,7 +134,7 @@ POST api/{database}/{table}/_query_plan
 GET api/{database}/{table}/_count
 ```
 
-#### Doris BE
+#### 4.2.2 Doris BE
 
 
 通过Thrift协议，直接对外提供数据的过滤、扫描和裁剪能力。
@@ -158,7 +158,7 @@ https://github.com/apache/incubator-doris/blob/master/gensrc/thrift/DorisExterna
 
  
 
-### 实现DataStream
+### 4.3 实现DataStream
 
 继承 org.apache.flink.streaming.api.functions.source.RichSourceFunction ，自定义DorisSourceFunction，初始化时，获取相关表的执行计划，获取对应的分区。
 
@@ -179,11 +179,11 @@ public void run(SourceContext sourceContext){
 
 
 
-### 实现Flink SQL on Doris
+### 4.4 实现Flink SQL on Doris
 
 参考了[Flink自定义Source&Sink](https://ci.apache.org/projects/flink/flink-docs-stable/zh/dev/table/sourceSinks.html) 和 Flink-jdbc-connector，实现了下面的效果，可以实现用Flink SQL直接操作Doris的表，包括读和写。
 
-#### 实现细节
+#### 4.4.1 实现细节
 
 1.实现DynamicTableSourceFactory , DynamicTableSinkFactory 注册 doris connector
 
@@ -245,3 +245,50 @@ public  void writeRecord(RowData row) throws IOException {
 }
 ```
 
+## 5.配置参数
+
+### 5.1 通用配置项
+
+| Key                              | Default Value     | Comment                                                      |
+| -------------------------------- | ----------------- | ------------------------------------------------------------ |
+| fenodes                          | --                | Doris FE http 地址                                           |
+| table.identifier                 | --                | Doris 表名，如：db1.tbl1                                     |
+| username                         | --                | 访问Doris的用户名                                            |
+| password                         | --                | 访问Doris的密码                                              |
+| doris.request.retries            | 3                 | 向Doris发送请求的重试次数                                    |
+| doris.request.connect.timeout.ms | 30000             | 向Doris发送请求的连接超时时间                                |
+| doris.request.read.timeout.ms    | 30000             | 向Doris发送请求的读取超时时间                                |
+| doris.request.query.timeout.s    | 3600              | 查询doris的超时时间，默认值为1小时，-1表示无超时限制         |
+| doris.request.tablet.size        | Integer.MAX_VALUE | 一个Partition对应的Doris Tablet个数。 此数值设置越小，则会生成越多的Partition。从而提升Flink侧的并行度，但同时会对Doris造成更大的压力。 |
+| doris.batch.size                 | 1024              | 一次从BE读取数据的最大行数。增大此数值可减少flink与Doris之间建立连接的次数。 从而减轻网络延迟所带来的的额外时间开销。 |
+| doris.exec.mem.limit             | 2147483648        | 单个查询的内存限制。默认为 2GB，单位为字节                   |
+| doris.deserialize.arrow.async    | false             | 是否支持异步转换Arrow格式到flink-doris-connector迭代所需的RowBatch |
+| doris.deserialize.queue.size     | 64                | 异步转换Arrow格式的内部处理队列，当doris.deserialize.arrow.async为true时生效 |
+| doris.read.field                 | --                | 读取Doris表的列名列表，多列之间使用逗号分隔                  |
+| doris.filter.query               | --                | 过滤读取数据的表达式，此表达式透传给Doris。Doris使用此表达式完成源端数据过滤。 |
+| sink.batch.size                  | 100               | 单次写BE的最大行数                                           |
+| sink.max-retries                 | 1                 | 写BE失败之后的重试次数                                       |
+| sink.batch.interval              | 1s                | flush 间隔时间，超过该时间后异步线程将 缓存中数据写入BE。 默认值为1秒，支持时间单位ms、s、min、h和d。设置为0表示关闭定期写入。 |
+| sink.properties.*                | --                | Stream load 的导入参数。例如:'sink.properties.column_separator' = ','等。 支持JSON格式导入，需要同时开启'sink.properties.format' = 'json'和'sink.properties.strip_outer_array' = 'true' |
+
+### 5.2 Doris 和 Flink 列类型映射关系
+
+| Doris Type | Flink Type           |
+| ---------- | -------------------- |
+| NULL_TYPE  | NULL                 |
+| BOOLEAN    | BOOLEAN              |
+| TINYINT    | TINYINT              |
+| SMALLINT   | SMALLINT             |
+| INT        | INT                  |
+| BIGINT     | BIGINT               |
+| FLOAT      | FLOAT                |
+| DOUBLE     | DOUBLE               |
+| DATE       | STRING               |
+| DATETIME   | STRING               |
+| DECIMAL    | DECIMAL              |
+| CHAR       | STRING               |
+| LARGEINT   | STRING               |
+| VARCHAR    | STRING               |
+| DECIMALV2  | DECIMAL              |
+| TIME       | DOUBLE               |
+| HLL        | Unsupported datatype |

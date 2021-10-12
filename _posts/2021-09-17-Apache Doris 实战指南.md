@@ -107,7 +107,7 @@ tag: Apache Doris
 
 ### 1.6.2 Flink Doris Connector
 
-
+[Flink Doris Connector设计方案](https://hf200012.github.io/2021/10/Apache-Doris-Flink-Connector设计方案/)
 
 [Flink 使用 sql 读取 kafka 利用doris flink connector写入到doris表中 ](https://hf200012.github.io/2021/09/Flink-使用-SQL-读取-Kafka-利用Doris-Flink-Connector写入到Doris表中/)
 
