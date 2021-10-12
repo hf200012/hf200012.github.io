@@ -139,19 +139,39 @@ tag: Apache Doris
 
 ### 2.1.1 什么是数据中台
 
+[基于Apache doris怎么构建数据中台(一)-什么是数据中台](https://hf200012.github.io/2021/08/基于Apache-doris怎么构建数据中台(一)-什么是数据中台/)
+
 ### 2.2.2 数据中台构建内容
+
+[基于Apache doris怎么构建数据中台(二)-数据中台建设内容](https://hf200012.github.io/2021/08/基于Apache-doris怎么构建数据中台(二)-数据中台建设内容/)
 
 ## 2.3 基于Doris的元数据管理系统构建
 
+[元数据管理系统 ](https://hf200012.github.io/2021/08/元数据管理系统/)
+
+[基于Apache doris怎么构建数据中台(三)-数据资产管理 ](https://hf200012.github.io/2021/08/基于Apache-doris怎么构建数据中台(三)-数据资产管理/)
+
 ## 2.4 怎么基于Doris现数据快速接入
+
+[基于Apache doris怎么构建数据中台(四)-数据接入系统](https://hf200012.github.io/2021/08/基于Apache-doris怎么构建数据中台(四)-数据接入系统/)
 
 ## 2.5. 基于规则的数据质量引擎构建
 
+[基于Apache doris怎么构建数据中台(五)-数据质量管理](https://hf200012.github.io/2021/09/基于Apache-doris怎么构建数据中台(五)-数据质量/)
+
 ## 2.6 基于Doris实现数据服务快速开发
+
+[基于Apache doris怎么构建数据中台(六)-数据服务管理](https://hf200012.github.io/2021/09/基于Apache-doris怎么构建数据中台(六)-数据服务/)
 
 ## 2.7 基于Doris的数据指标体系构建
 
+[如何构建公司的数据指标体系 ](https://hf200012.github.io/2021/07/如何构建公司的数据指标体系/)
+
+[基于Apache Doris怎么构建数据中台(七)-数据指标管理 ](https://hf200012.github.io/2021/09/基于Apache-Doris怎么构建数据中台(七)-数据指标管理/)
+
 ## 2.8 Doris的数仓管理设计
+
+
 
 ## 2.9 数据安全设计
 
