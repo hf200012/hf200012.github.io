@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Apache Doris 实战指南"
-date: 2021-09-17
-description: "Apache Doris 实战指南"
+title: "Flink Doris Connector设计方案"
+date: 2021-10-12
+description: "Flink Doris Connector设计方案"
 tag: Apache Doris
 ---
 # Flink Doris Connector设计方案

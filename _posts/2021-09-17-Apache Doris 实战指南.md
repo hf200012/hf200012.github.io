@@ -107,6 +107,12 @@ tag: Apache Doris
 
 ### 1.6.2 Flink Doris Connector
 
+
+
+[Flink 使用 sql 读取 kafka 利用doris flink connector写入到doris表中 ](https://hf200012.github.io/2021/09/Flink-使用-SQL-读取-Kafka-利用Doris-Flink-Connector写入到Doris表中/)
+
+[Flink Mysql CDC结合Doris flink connector实现数据实时入库](https://hf200012.github.io/2021/09/实现通过Flink-Mysql-CDC结合Apache-doris-flink-connector实现数据实时入库/)
+
 ### 1.6.3 Datax DorisWriter 
 
 [Apache Doris Datax DorisWriter扩展使用方法 ](https://hf200012.github.io/2021/09/Apache-doris-Datax-DorisWriter扩展使用方法/)
