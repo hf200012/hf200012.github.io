@@ -171,9 +171,11 @@ tag: Apache Doris
 
 ## 2.8 Doris的数仓管理设计
 
-
+[基于Apache-doris怎么构建数据中台(八)-数仓管理](https://hf200012.github.io/2021/09/基于Apache-doris怎么构建数据中台(八)-数仓管理/)
 
 ## 2.9 数据安全设计
+
+[基于Apache doris怎么构建数据中台(九)-数据安全](https://hf200012.github.io/2021/10/基于Apache-doris怎么构建数据中台(九)-数据安全/)
 
 # 第三部分 Apache doris运维
 
