@@ -22,7 +22,7 @@ tag: Apache Doris
 
 在Doris的代码库的 extension/flink-doris-connector/ 目录下编译生成doris-flink-1.0.0-SNAPSHOT.jar，将这个jar包加入flink的ClassPath中，即可使用Flink-on-Doris功能了
 
-#### 2.1 SQL方式
+### 2.1 SQL方式
 
 支持功能：
 
@@ -69,7 +69,7 @@ tag: Apache Doris
         tEnv.executeSql("select count(1) from test_aggregation01");
 ```
 
-#### 2.2 DataStream方式
+### 2.2 DataStream方式
 
 ```java
 DorisOptions.Builder options = DorisOptions.builder()
@@ -88,11 +88,11 @@ env.addSource(new DorisSourceFunction<>(options.build(),new SimpleListDeserializ
 
 
 
-#### 3.1 使用Flink对Doris中的数据和其他数据源进行联合分析
+### 3.1 使用Flink对Doris中的数据和其他数据源进行联合分析
 
 很多业务部门会将自己的数据放在不同的存储系统上，比如一些在线分析、报表的数据放在Doris中，一些结构化检索数据放在Elasticsearch中、一些需要事物的数据放在MySQL中，等等。业务往往需要跨多个存储源进行分析，通过Flink Doris Connector打通Flink和Doris后，业务可以直接使用Flink，将Doris中的数据与多个外部数据源做联合查询计算。
 
-#### 3.2 实时数据接入
+### 3.2 实时数据接入
 
 Flink Doris Connector之前：针对业务不规则数据，经常需要针对消息做规范处理，空值过滤等写入新的topic，然后再启动Routine load写入Doris。
 
