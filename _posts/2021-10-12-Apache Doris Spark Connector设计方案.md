@@ -13,7 +13,7 @@ Spark Doris Connector 是Doris在0.12版本中推出的新功能。用户可以�
 
 ## 1.技术选型
 
-在早期的方案中，我们直接将Doris的JDBC接口提供给Spark。对于JDBC这个Datasource，Spark侧的工作原理为，Spark的Driver通过JDBC协议，访问Doris的FE，以获取对应Doris表的Schema。然后，按照某一字段，将查询分位多个Partition子查询任务，下发给多个Spark的Executors。Executors将所负责的Partition转换成对应的JDBC查询，直接访问Doris的FE接口，获取对应数据。这种方案几乎无需改动代码，但是因为Spark无法感知Doris的数据分布，会导致打到Doris的查询压力非常大。 
+在早期的方案中，我们直接将Doris的JDBC接口提供给Spark。对于JDBC这个Datasource，Spark侧的工作原理为，Spark的Driver通过JDBC协议，访问Doris的FE，以获取对应Doris表的Schema。然后，按照某一字段，将查询分为多个Partition子查询任务，下发给多个Spark的Executors。Executors将所负责的Partition转换成对应的JDBC查询，直接访问Doris的FE接口，获取对应数据。这种方案几乎无需改动代码，但是因为Spark无法感知Doris的数据分布，会导致打到Doris的查询压力非常大。 
 
 于是社区开发了针对Doris的新的Datasource，Spark-Doris-Connector。这种方案下，Doris可以暴露Doris数据分布给Spark。Spark的Driver访问Doris的FE获取Doris表的Schema和底层数据分布。之后，依据此数据分布，合理分配数据查询任务给Executors。最后，Spark的Executors分别访问不同的BE进行查询。大大提升了查询的效率。
 
@@ -130,7 +130,7 @@ kafkaSource.selectExpr("CAST(key AS STRING)", "CAST(value as STRING)")
 
 在没有Spark Doris Connector前，Doris修改数据的成本很高，但数据的修改和删除需求在真实业务中时常出现。
 
-![img](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20210205_2fda52a4-6787-11eb-a9c2-5254001c05fe.png)
+![img](/images/connector/modb_20210205_2fda52a4-6787-11eb-a9c2-5254001c05fe.png)
 
 
 
@@ -147,7 +147,7 @@ kafkaSource.selectExpr("CAST(key AS STRING)", "CAST(value as STRING)")
 有了Spark Doris Connector，处理历史数据变更将会更加便捷
 
 
-![img](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20210205_2ff9dc82-6787-11eb-a9c2-5254001c05fe.png)
+![img](/images/connector/modb_20210205_2ff9dc82-6787-11eb-a9c2-5254001c05fe.png)
 
 
 
