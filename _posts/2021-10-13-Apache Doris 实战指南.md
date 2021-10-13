@@ -133,6 +133,8 @@ tag: Apache Doris
 
 ### 1.6.7 Doris On ElasticSearch
 
+[Apache Doris On ElasticSearch 使用](https://hf200012.github.io/2021/10/Apache-Doris-On-ElasticSearche/)
+
 # 第二部分 基于Doris的数据中台实践
 
 ## 2.1  数据中台构建内容
