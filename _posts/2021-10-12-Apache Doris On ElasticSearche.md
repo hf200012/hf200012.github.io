@@ -393,13 +393,13 @@ PROPERTIES (
 
 完成在Doris中建立ES外表后，除了无法使用Doris中的数据模型(rollup、预聚合、物化视图等)外并无区别
 
-#### 5.1 基本查询
+### 5.1 基本查询
 
 ```sql
 select * from es_table where k1 > 1000 and k3 ='term' or k4 like 'fu*z_'
 ```
 
-#### 5.2 扩展的esquery(field, QueryDSL)
+### 5.2 扩展的esquery(field, QueryDSL)
 
 通过`esquery(field, QueryDSL)`函数将一些无法用sql表述的query如match_phrase、geoshape等下推给ES进行过滤处理，`esquery`的第一个列名参数用于关联`index`，第二个参数是ES的基本`Query DSL`的json表述，使用花括号`{}`包含，json的`root key`有且只能有一个，如match_phrase、geo_shape、bool等
 
