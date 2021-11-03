@@ -89,9 +89,9 @@ tag: Apache Doris
 
 [Apache doris 数据更新操作](https://hf200012.github.io/2021/09/Apache-Doris-数据更新操作/)
 
-### 1.4.4 Doris 数据恢复
+### 1.4.5 Doris 数据恢复
 
-[Apache doris 数据更新操作](
+[Apache Doris 删除数据恢复 ](https://hf200012.github.io/2021/11/Apache-Doris-删除数据恢复/)
 
 ## 1.5 Apache Doris Join 原理及使用
 
@@ -125,9 +125,7 @@ tag: Apache Doris
 
 [Apache doris sql日志审计 ](https://hf200012.github.io/2021/09/Apache-Doris-SQL日志审计/)
 
-### 1.6.5 Doris to logstash 插件
-
-### 1.6.6 Doris ODBC 外表
+### 1.6.5 Doris ODBC 外表
 
 [Apache doris ODBC外表使用方式 ](https://hf200012.github.io/2021/09/Apache-doris-ODBC外表使用方式/)
 
@@ -189,9 +187,11 @@ tag: Apache Doris
 
 ### 3.1.2 元数据运维
 
-
+[Apache Doris 元数据运维](https://hf200012.github.io/2021/11/Apache-Doris-元数据恢复/)
 
 ### 3.1.3 监控及预警
+
+[使用 Grafana 监控 Apache Doris](https://hf200012.github.io/2021/05/使用Grafana监控Apache-Doris/)
 
 ### 3.1.4 副本管理
 
