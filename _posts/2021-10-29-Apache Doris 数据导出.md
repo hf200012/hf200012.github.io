@@ -34,8 +34,6 @@ Export **只支持单表**数据导出，支持导出该表的指定字段（0.1
    1. PENDING：FE 生成 ExportPendingTask，向 BE 发送 snapshot 命令，对所有涉及到的 Tablet 做一个快照。并生成多个查询计划。
    2. EXPORTING：FE 生成 ExportExportingTask，开始执行查询计划。
 
-
-
 ### 2.2 Export 查询计划
 
 #### 2.2.1 查询计划拆分
