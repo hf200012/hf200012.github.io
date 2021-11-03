@@ -81,15 +81,17 @@ tag: Apache Doris
 
 ### 1.4.2 数据导出
 
-#### 1.4.2.1 Export 导出
-
-#### 1.4.2.2 查询结果导出
+[Apache Doris 数据导出](https://hf200012.github.io/2021/10/Apache-Doris-数据导出/)
 
 ### 1.4.3 Doris数据删除
 
 ### 1.4.4 Doris数据更新
 
 [Apache doris 数据更新操作](https://hf200012.github.io/2021/09/Apache-Doris-数据更新操作/)
+
+### 1.4.4 Doris 数据恢复
+
+[Apache doris 数据更新操作](
 
 ## 1.5 Apache Doris Join 原理及使用
 
@@ -186,6 +188,8 @@ tag: Apache Doris
 ### 3.1.1 磁盘空间管理
 
 ### 3.1.2 元数据运维
+
+
 
 ### 3.1.3 监控及预警
 
