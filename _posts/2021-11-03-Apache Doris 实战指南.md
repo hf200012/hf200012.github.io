@@ -95,7 +95,7 @@ tag: Apache Doris
 
 ### 1.4.6 Doris 数据备份及恢复
 
-
+[Apache Doris 数据备份及恢复 ](https://hf200012.github.io/2021/11/Apache-Doris数据备份及恢复/)
 
 ## 1.5 Apache Doris Join 原理及使用
 
