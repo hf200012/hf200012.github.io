@@ -1,4 +1,11 @@
-# Doris Grafana监控指标介绍
+---
+layout: post
+title: "Apache Doris Grafana监控指标介绍"
+date: 2021-11-05
+description: "Apache Doris Grafana监控指标介绍"
+tag: Apache Doris
+---
+# Apache Doris Grafana监控指标介绍
 
 ## 1.总览视图
 
