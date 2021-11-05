@@ -371,7 +371,13 @@ BE 的行扫描速率，这表示处理查询时的读取行率。
 
 ![image-20211105164611167](/images/grafana/image-20211105164611167.png)
 
-### 7.14 Tablet Meta Read
+### 7.14 BE Scan Bytes
+
+BE的扫描速率，这表示处理查询时的行读取速率。
+
+![image-20211105180737088](/images/grafana/image-20211105180737088.png)
+
+### 7.15 Tablet Meta Read
 
 Y 轴显示了保存在rocksdb 中的tablet header 的读取速率。 右侧的 Y 轴显示每次读取操作的持续时间。
 
