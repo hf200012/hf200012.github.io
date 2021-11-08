@@ -7,6 +7,18 @@ tag: Apache Doris
 ---
 # Apache Doris Grafana监控指标介绍
 
+整个集群重点关注的几个指标：
+
+- 集群 FE JVM 堆统计
+- 集群BE内存使用情况概览
+- Max Replayed journal id
+- BDBJE Write
+- Tablet调度情况
+- BE IO统计
+- BE Compaction Score
+- Query Statistic这部分查询请求数及响应时间
+- BE BC（Base Compaction）和CC（Compaction Cumulate）
+
 ## 1.总览视图
 
 ### 1.1 Doris FE状态
@@ -67,6 +79,8 @@ tag: Apache Doris
 
 ### 2.2 Max Replayed journal id
 
+**这是一个核心监控指标**
+
 Doris FE的最大重播元数据日志 ID。正常Master的journal id最大，其他非Master FE节点的这个值基本保持一致，小于Master节点的这值，如果有FE节点这个值和其他节点差别特别大，说明这个节点元数据版本太旧，数据会存在不一致的情况，这种情况下可以将该节点从集群中删除，然后在作为一个新的FE节点加入进来，这样正常情况下这个值和其他节点就会保持一致。
 
 ![image-20211105141350358](/images/grafana/image-20211105141350358.png)
@@ -83,6 +97,10 @@ Doris Master FE 元数据image生成计数器。 并且 Image 计数器成功推
 
 ### 2.4 BDBJE Write
 
+**这是一个重要监控指标**
+
+BDBJE 写入情况，正常都是毫秒级别，如果出现秒级的写入速度就要警惕了，可能会出现元数据写入延迟，严重可能会引起写入错误。
+
 BDBJE：[Oracle Berkeley DB Java Edition (opens new window)](http://www.oracle.com/technetwork/database/berkeleydb/overview/index-093405.html)。在 Doris 中，我们使用 bdbje 完成元数据操作日志的持久化、FE 高可用等功能
 
 左侧 Y 轴显示 99th 写入延迟。 右侧的 Y 轴显示日志的每秒写入次数。
@@ -97,11 +115,17 @@ BDBJE：[Oracle Berkeley DB Java Edition (opens new window)](http://www.oracle.c
 
 ### 2.6 BE IO统计
 
-集群中每个BE 最大磁盘IO的统计情况
+**这是一个重要监控指标**
+
+而对于 IO 操作，目前还没有提供单独的 Compaction 操作的 IO 监控，我们只能根据集群整体的 IO 利用率情况来做判断。我们可以查看监控图 Disk IO util：
 
 <img src="/images/grafana/image-20211105143010357.png" alt="image-20211105143010357" style="zoom:50%;" />
 
+这个监控展示的是每个 BE 节点上磁盘的 IO util 指标。数值越高表示IO越繁忙。当然大部分情况下 IO 资源都是查询请求消耗的，这个监控主要用于指导我们是否需要增加或减少 Compaction 任务数。
+
 ### 2.7 BE Compaction Score
+
+**这是一个重要监控指标**
 
 Doris 的数据写入模型使用了 LSM-Tree 类似的数据结构。数据都是以追加（Append）的方式写入磁盘的。这种数据结构可以将随机写变为顺序写。这是一种面向写优化的数据结构，他能增强系统的写入吞吐，但是在读逻辑中，需要通过 Merge-on-Read 的方式，在读取时合并多次写入的数据，从而处理写入时的数据变更。
 
@@ -111,9 +135,22 @@ Merge-on-Read 会影响读取的效率，为了降低读取时需要合并的数
 
 关于这个值的计算方式和Compaction的原理可以参照:[Doris Compaction机制解析 ](https://mp.weixin.qq.com/s?__biz=Mzg5MDEyODc1OA==&mid=2247485136&idx=1&sn=a10850a61f2cb6af42484ba8250566b5&chksm=cfe016c9f8979fdf100776d9103a7960a524e5f16b9ddc6220c0f2efa84661aaa95a9958acff&scene=21#wechat_redirect)这篇文章
 
+这里反映的是集群中每个 BE 节点，所有 Tablet 中数据版本最多的那个 Tablet 的版本数量，可以反映出当前版本堆积情况，
+
+1. 观察数据版本数量的趋势，如果趋势平稳，则说明 Compaction 和导入速度基本持平。如果呈上升态势，则说明 Compaction 速度跟不上导入速度了。如果呈下降态势，说明 Compaction 速度超过了导入速度。如果呈上升态势，或在平稳状态但数值较高，则需要考虑调整 Compaction 参数以加快 Compaction 的进度。这里需要去参考第七部分BE的 7.10小节 ：Base Compaction 和 Cumulative Compaction
+
+2. 通常版本数量维持在 100 以内可以视为正常。而在大部分批量导入或低频导入场景下，版本数量通常为10-20甚至更低。
+
 ![image-20211105143220540](/images/grafana/image-20211105143220540.png)
 
+如果版本数量有上升趋势或者数值较高，则可以从以下两方面优化 Compaction：
+
+1. 修改 Compaction 线程数，使得同时能够执行更多的 Compaction 任务。
+2. 优化单个 Compaction 的执行逻辑，使数据版本数量维持在一个合理范围。
+
 ## 3.Query Statistic
+
+这部分主要是监控整个集群各种请求情况，Select查询及响应时间
 
 ### 3.1 RPS
 
@@ -327,28 +364,30 @@ FileDescriptor 顾名思义是`文件描述符`，FileDescriptor 可以被用来
 
 ![image-20211105161321505](/images/grafana/image-20211105161321505.png)
 
-
-
 ### 7.7 BE Thread Num
 
 BE的线程数
 
 ![image-20211105161412512](/images/grafana/image-20211105161412512.png)
 
-
-
 ### 7.9 Disk IO util
 
 BE 的IO util。 高表示 I/O 繁忙。
+
+**参考2.6小节**
 
 ![image-20211105162301906](/images/grafana/image-20211105162301906.png)
 
 ### 7.10 BE BC（Base Compaction）和CC（Compaction Cumulate）
 
+**这是一个重要监控指标**
+
+这个和2.7小节的Base Compaction Score关联使用排查问题
+
 1. Base Compaction : BE全量压缩率，通常，基本压缩仅在 20:00 到 4:00 之间运行并且它是可配置的。右 Y 轴表示总基本压缩字节。
 2. Compaction Cumulate: BE增量压缩率，右 Y 轴表示总累积压缩字节。
 
-Doris 的 Compaction分为两种类型：base compaction和cumulative compaction。其中cumulative compaction则主要负责将多个最新导入的rowset合并成较大的rowset，而base compaction会将cumulative compaction产生的rowset合入到start version为0的基线数据版本（Base Rowset）中，是一种开销较大的compaction操作。这两种compaction的边界通过cumulative point来确定。base compaction会将cumulative point之前的所有rowset进行合并，cumulative compaction会在cumulative point之后选择相邻的数个rowset进行合并
+Doris 的 Compaction分为两种类型：base compaction和cumulative compaction。其中cumulative compaction则主要负责将多个最新导入的rowset合并成较大的rowset，而base compaction会将cumulative compaction产生的rowset合入到start version为0的基线数据版本（Base Rowset）中，是一种开销较大的compaction操作。这两种compaction的边界通过cumulative point来确定。base compaction会将cumulative point之前的所有rowset进行合并，cumulative compaction会在cumulative point之后选择相邻的数个rowset进行合并。
 
 ![image-20211105162416773](/images/grafana/image-20211105162416773.png)
 
