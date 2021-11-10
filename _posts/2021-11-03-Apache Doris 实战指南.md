@@ -79,6 +79,10 @@ tag: Apache Doris
 
 [Apache Doris Sequence介绍及使用方法 ](https://hf200012.github.io/2021/09/Apache-Doris-sequence介绍及使用方法/)
 
+#### 3.4.1.7 Binlog Load 使用
+
+[Apache doris binlog load使用方法及示例](https://hf200012.github.io/2021/11/Apache-Doris-Binlog-load使用方法/)
+
 ### 1.4.2 数据导出
 
 [Apache Doris 数据导出](https://hf200012.github.io/2021/10/Apache-Doris-数据导出/)
