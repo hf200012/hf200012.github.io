@@ -148,7 +148,7 @@
    tail -200f logs/demo/demo.log
    ```
 
-   ![image-20211110145044815](C:\Users\zhang\AppData\Roaming\Typora\typora-user-images\image-20211110145044815.png)
+   ![image-20211110145044815](/images/binlog/image-20211110145044815.png)
 
 ## 3.开始同步数据
 
@@ -345,7 +345,7 @@ FROM BINLOG
 SHOW SYNC JOB from test_2;
 ```
 
-![image-20211110160106602](C:\work\incubator-doris\docs\.vuepress\public\images\binlog\image-20211110160106602.png)
+![image-20211110160106602](/images/binlog/image-20211110160106602.png)
 
 #### 3.1.4 查看表里的数据
 
@@ -353,7 +353,7 @@ SHOW SYNC JOB from test_2;
 select * from doris_mysql_binlog_demo;
 ```
 
-![image-20211110160331479](C:\work\incubator-doris\docs\.vuepress\public\images\binlog\image-20211110160331479.png)
+![image-20211110160331479](/images/binlog/image-20211110160331479.png)
 
 #### 3.1.5 删除数据
 
@@ -365,7 +365,7 @@ delete from test_cdc where id in (12,13)
 
 我们在去看Doris表里，id是12,13这两条数据已经被删除
 
-![image-20211110160710709](C:\work\incubator-doris\docs\.vuepress\public\images\binlog\image-20211110160710709.png)
+![image-20211110160710709](/images/binlog/image-20211110160710709.png)
 
 #### 3.1.6 多表同步
 
