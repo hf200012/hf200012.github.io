@@ -128,7 +128,6 @@ DUPLICATE KEY列顺序与CREATE TABLE中不一致
 - 不包含FLOAT/DOUBLE类型的列;
 - VARCHAR类型列只能出现一次, 并且是末尾位置;
 - 当shortkey index的末尾列为CHAR或者VARCHAR类型时, shortkey的长度会超过36字节;
-- 当用户在建表语句中指定short_key属性时，例如"short_key" = "4"指定4个列作为short_key, 可突破上述限制;
 
 ## 2. 如何选择排序列
 

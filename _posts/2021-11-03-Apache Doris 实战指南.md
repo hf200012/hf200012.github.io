@@ -55,7 +55,7 @@ tag: Apache Doris
 
 ### 1.4.1 Doris数据导入
 
-[Apache Doris 数据导入总览](https://hf200012.github.io/2021/09/Apache-Doris-数据导入/)
+[Apache Doris 数据导入总览](https://hf200012.github.io/2021/09/Apache-Doris-数据导入总览/)
 
 #### 1.4.1.1 Broker load 使用
 
