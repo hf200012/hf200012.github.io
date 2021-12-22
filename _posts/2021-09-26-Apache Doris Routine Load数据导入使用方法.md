@@ -353,10 +353,10 @@ offset。默认为 OFFSET_END，即从末尾开始订阅。
 
 ```sql
 CREATE TABLE `example_table` (
-  `id` int,
-  `name` varchar(11),  
-  `age` int,
-  `address` varchar(50)
+  `category` int,
+  `author` varchar(11),  
+  `timestamp` int,
+  `dt` varchar(50)
 ) 
 DISTRIBUTED BY HASH(id) BUCKETS 2
 PROPERTIES( 
