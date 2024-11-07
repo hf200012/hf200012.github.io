@@ -126,7 +126,7 @@ BI 应用直接访问湖仓一体中的源数据，可减少数据重复。
 
 我们来看一个新一代云原生湖仓一体数据平台的产品的全景架构图：
 
-图片
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmr76Xma3AlnsiaomlQaWzDByI6k458cL8nJJFJxoaqcEZKrc3A5SEmNwA/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 云器Lakehouse产品
 云器 Lakehouse 是一种创新的湖仓架构服务，旨在为企业提供一个全托管的数据管理和分析平台。该服务通过整合数据仓库构建、数据湖探索分析、实时与离线数据处理以及业务报表等多种功能，满足企业在不同发展阶段对扩展性、成本和性能的综合需求。
@@ -135,39 +135,39 @@ BI 应用直接访问湖仓一体中的源数据，可减少数据重复。
 
 完全开箱即用的端对端数据解决方案
 
-图片
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrxab1nAicxhh0qg7eKpCjFwErIGnZSk05VTTrxL1UGvzicWrIcSE6ibDJw/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 2. 可视化数据开发
 
 提供一站式可视化数据同步（包括实时同步，CDC数据同步），数据开发，任务调度及作业运维，可以平滑实现从开发环境到生产环境的无缝切换
 
-图片
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrnianVQloPl6E3j4QdgibD8eIVKgEPm2m5ibUTwv8zQMWbcm7ZL4saKTMw/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 3. 任务运维
 
-图片
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrZ2e2ubl1XLgEqyWYMx9RRfhz2xmSTn3oq4W7SYLnksK5H1ZjSXpjVQ/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 4. 数据地图及数据血缘
 
 数据地图：
 
-图片
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrI9ZnZ0iaJh0Z9uYEbX4WDcxmnpeRiaHAodymA8tlwVVGwIRAc7v1rSfg/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 数据血缘：
 
-图片
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmr1luW0l5s0v7EYNdJSfiaV2sibJKoaCL0ePfpBKmulyO9nKoo5LCUsQibQ/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 5. 数据质量
 
 云器Lakehouse提供了丰富的数据质量功能，用户可以根据自己需要进行数据质量规则的定义及数据质量的监控
 
-图片
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmr7jST2VapCFsWMf45Pee259OBiaxItkqrhwNhswr6apMYjUqQb1yyWibA/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1）
 
 6. 数据安全
 
 云器作为一个云原生Lakehouse SAAS服务，提供了完善的数据安全，操作审计，权限控制，网络策略等能力，确保用户数据安全及隐私。
 
-图片
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrY86pTxiaxTEUD6XqTibIxtxlSZo71TNX2PkJCnZ1J9ibflGPf8G5SH3Nw/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1）
 
 7. 弹性计算
 
@@ -181,7 +181,7 @@ BI 应用直接访问湖仓一体中的源数据，可减少数据重复。
 
 分析模式：一般是用在增量计算，分钟级流计算，实时OLAP分析等实时、近实时场景，还有BI报表可视化等场景使用
 
-图片
+![img](https://mmbiz.qpic.cn/mmbiz_png/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrwJBklicA8KSYibr9UHnfTwwFTyDWibM7nesJGmic5sQibhKrJLMficFibUNWg/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1）
 
 我们可以通过几个场景来看这种存算分离，完全serverless化带来的优势
 
