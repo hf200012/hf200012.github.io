@@ -23,7 +23,8 @@ tag: 云器Lakehouse
 
 首先，站在历史的脉络上来看一下数据平台技术的发展变革。
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuicUvGiaic5YNYAkwxibXbDia9icUgRduHbMeDgvHjxrKDI83SF5P3j3t3GeQ/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/c18e73f6-dfc7-4250-a758-761d95a8d708)
+
 
 数据平台的发展可以分为三个阶段：数据库时代、大数据时代，以及今天的生成式 AI 时代。
 
@@ -31,7 +32,8 @@ tag: 云器Lakehouse
 
 近两年来，以 ChatGPT 为代表的生成式人工智能（AI）技术，为行业带来了新的可能性和智能能力。目前，业界正在思考如何将数据平台与 AI 能力更好地集成，以创造新的数据应用创新。
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuF1OZna9CRRY0ofV4embx1fSjsk9kiaTxzQp2oCestjy2usm68TAIW2g/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/86f7dfdd-148b-4079-8337-cde9a9696c9e)
+
 
 刚才是从历史的脉络来看，如果我们换个角度来审视这三次创新，根据 Gartner 技术成熟度曲线可以看到，数据平台经历的三次革命性技术变革，其成熟度各有不同。
 
@@ -45,7 +47,8 @@ tag: 云器Lakehouse
 
 在进一步展开之前，我们需要从数据平台技术架构的视角出发，审视当前的数据平台中哪些部分是稳定的，哪些部分在进一步固化或标准化，以及在新的技术浪潮下，哪些部分会面临挑战和演进。
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuucZPiccTC4sAGjAKa2mwevKw1WwFhlwoDSNwVwQtKZ9uDJwMXSI6Micw/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/28e2991a-0eb0-40c1-af09-d3d4287f8b3b)
+
 
 让我们回顾一下当前主流的数据平台架构。
 
@@ -67,7 +70,8 @@ tag: 云器Lakehouse
 
 ### **1.** **结构化数据分析架构，开始定型“不变”，主要挑战？**
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxupZ47O2t8ouibzlE2al26aeZJ3uBaOtyoiaIvje1wACVbzol7eAbhibWpQ/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/177d5fc3-7f73-4f88-846c-da4a47df53a2)
+
 
 我们认为结构化数据的处理逻辑或体系框架已经相对成熟，但它在某些方面仍存在挑战和不足：
 
@@ -77,7 +81,8 @@ tag: 云器Lakehouse
 
 ### **2. 结构化数据分析演进之一-湖仓一体**
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxu3oKyicvlxiavHRmIwztTKzAS29rVLgjT3iaqOHyeCKHMgjDzd7iaA8HH9g/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/a93da947-f981-4dab-b6c1-b1cd03e99b67)
+
 
 为了解决这些问题，从业界来看，自 2019 年开始，大家开始共同认识到，在存储层使用低成本的存储介质来管理结构化数据的重要性。市场上出现了许多以表格格式和文件格式来表达结构化数据的解决方案，这些解决方案带来了数据一致性、更新能力和流处理能力的提升。
 
@@ -87,7 +92,8 @@ tag: 云器Lakehouse
 
 ### **3.** **结构化数据分析演进之二-“云原生”变成架构概念**
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuqdbBmvrNosLXFQKNsjblQhCMqB4SUiad4GQfcyN8kmgPreIv3iboefDg/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/46517493-1c69-49aa-b0be-aac284fc8cbd)
+
 
 在 2000 年大数据时代，主要是通过使用成本较低的 X86 方案构建分布式集群，以降低数据处理的单位成本。2000 年之后，云计算或云原生架构的能力得到了广泛应用。云原生对数据平台产生了巨大影响，实现了存储和计算的分离，因为无论是公共云还是私有云的基础设施，都已经相当普及。
 
@@ -100,7 +106,8 @@ tag: 云器Lakehouse
 
 ### **4.** **结构化数据分析演进之三-计算引擎的一体化**
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxu59MJWnt4N9kmusw012L9gA6GK02vLZfPibBd4coYiaZ80A8WNQrnibW7Q/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/ff6abfe4-6924-48b8-99a7-56a48edd182f)
+
 
 接下来讨论计算引擎。市面上有许多成熟的计算引擎，例如在批处理领域的 Spark，以及流式计算和交互式引擎领域的许多产品。这些产品存在一些问题：
 
@@ -112,7 +119,8 @@ tag: 云器Lakehouse
 
 ### **5.** **下一代的数据平台架构的推荐架构**
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuXawFoLq5qlmojibJQMiaubKOKiaxYBoZRcfkevm43BeDgPqbm4nNqicbIA/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/0b18d62f-5f75-462e-9c70-a646d8b8b809)
+
 
 总结刚才的讨论，我们认为下一代数据平台至少应具备以下趋势：
 
@@ -128,7 +136,8 @@ tag: 云器Lakehouse
 
 #### （1）趋势 1：数据平台体系架构从 1:1 到 M:N
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuOibloe9InTAUSia5gSsBC6t2MJH0qshVSOKFkPK1y8fqwaib1xDia1Sdgg/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/fbbb6b32-f15c-4831-b679-6c1b0d74ff51)
+
 
 回顾过去的数据平台，主要以结构化数据为主。从底层向上看，最底层是结构化数据的存储。传统的数仓 MPP 系统天然面向结构化存储，通常与计算紧密绑定，上面有结构化数据的分析，以 SQL 或者 Data Frame 这种编程框架来开发。随着 AI 能力的兴起和扩展，AI 技术增强了数据处理能力，能够处理更多类型的数据。例如，我们正在与一些客户探索新的场景。他们可能拥有大量 PDF 文件，包含合同等各类数据。我们需要在数据平台中提取这些海量非结构化数据中的信息，并将其结构化。这时，数据管理平台面临一个问题：首先，数据平台需要能够管理以文件和目录形式表达的非结构化数据。我们可以看到，存储层的发展目标是能够很好地管理这些非结构化数据。但在实现这一目标时，我们需要考虑许多方面：
 
@@ -142,7 +151,8 @@ tag: 云器Lakehouse
 
 #### （2）趋势 2：Data Centric AI - **数据**是 AGI 时代最大的 Differentiator
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuZXswjNxqLj4WMZ1skgaoX5elicyRvWHibnBwWAQv1rGzeicia1ibV9icIefQ/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/d28ec648-ba8f-4ce3-aa0e-9e4c7324e3b3)
+
 
 其次，我们观察到，当企业真正实施大型模型时，模型和算力本身是标准化的。对于更广泛的企业来说，他们可能不会进行算力处理或模型的开发和训练，而是更多地使用现成的解决方案。这时，企业如何更好地将自有的私有数据与现有能力相连接，就成为了差异化竞争的关键点。然而，这项工作本身，正如大家所熟知的，最常见的落地应用，例如以 IG 为例的应用，大部分前期工作还是要从企业数据中提取所需信息。当我们想要应用这些技术时，需要收集客服数据，从车险车损相关场景中提取照片、工单等，并将它们分门别类地管理在数据平台中。
 
@@ -152,11 +162,13 @@ tag: 云器Lakehouse
 
 #### （3）趋势 3：数据平台架构重回搜索时代
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuluSXxjN9SVfqMibO33MBsuwWRqdqH8wTZkSqRZTBcvTOs8o8MqgXdCQ/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/9fdb707e-0eb2-4d83-b9c1-cc969ec94f8c)
+
 
 之前的数据平台主要侧重于商业智能（BI）分析，数据的采集和加工都是为了使 BI 系统就绪，便于进行分析。外部通常会有一个偏服务的引擎，以实现快速查询和检索。
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuQFOPzFrUlVtS9BNgLJQl11BwjdqCGa1dIHBeBJbV9jsw6epKDKiaVag/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/8e23251e-a7a0-4386-95ad-e2eff7f27950)
+
 
 现在的数据平台在进行模型应用时，需要一个类似于搜索的技术框架和链路。例如，在智能问答系统（RAG）中，我们处理大量的非结构化数据，以文本为例，我们需要收集文本，进行切片，然后向量化。向量化后，进行查询和召回，进行相似问题的相似性检索，并通过 prompt 方式进行处理。这一流程与数据平台对结构化数据的加工几乎相同，包括数据的采集、转换，以及为了分析或 AI 就绪而进行的存储。
 
@@ -164,7 +176,8 @@ tag: 云器Lakehouse
 
 #### （4）趋势 4：统一元数据管理，重要性提升 10 倍，构建难度也提升 10 倍
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuFU62p60oqP1CKlo5vPUIx9fmteyLJc9Ggibs895u3p7vibdyMgjhtsHw/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/ca491495-f3cb-4d63-a761-2705ad0c7bcd)
+
 
 然而，目前非结构化数据的管理还不够成熟。据来自 Gartner 的报告显示，企业中有 80% 的数据实际上是所谓的暗数据，即那些非结构化数据，在处理之前我们并不知道它们是什么。许多先进的企业已经建立了良好的数据中台和企业数仓，拥有详尽的数据资产地图。通过搜索方式，我们可以知道企业中有哪些供应商数据、销售数据等，并通过资产地图有效地检索这些企业数据资产，进而进行数据应用的开发和查询。然而，非结构化数据目前还没有这样的能力。企业中大量的数据集仅仅是存储在磁盘上，我们并不清楚它们具体包含哪些信息。
 
@@ -176,13 +189,15 @@ tag: 云器Lakehouse
 
 - 疑问一：SQL VS Python，当自动代码生成成为主流，赢家会是谁？
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuzUJDccmKNTyWKIjrF5JMfeibuP6L36arLnR4bo501ONDdeNdUuCYJeg/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/e3f980c3-abf4-40ed-ad32-2d0844a6b5a7)
+
 
 第一个问题是关于数据平台本身，如何利用生成 AI 更好地进行用户开发。众所周知，许多厂商在落地时，都会遇到 BI 问题，即通过分析回答问题。这时，我们面临一个挑战：很多时候，业务分析师（BA）提出的 SQL 查询可能不够准确。因为 SQL 本身是一个声明式的编程框架，它背后有许多优化，这些优化和自然语言的翻译或理解并不直观。在业界，一些领先的厂商，例如 Databricks，提供了自然语言翻译工具，能够将自然语言翻译成 Python 语言。这得益于公开互联网上大量的 Python 知识和数据处理知识，使得自然语言可以被翻译成 Python 脚本来提高处理的准确性。对于我们的数据平台来说，SQL 作为传统的开发语言，Python 也将成为另一种主流的开发语言。所有的引擎都需要适应这一场景，能够通过 Python 作为用户开发接口或编程接口，提供编程能力。
 
 - 疑问二：数据平台的“自动驾驶”多久能实现？
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxuichRee0s9TuXYKQCgESOqhib0cCxfccRsXtuBFcYDQiboTNZhlo1vIRvQ/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/14dc596a-005b-43c1-b39a-1d62d7bc6079)
+
 
 第二个问题是，在 ChatGPT 之后，数据平台普遍在进行问答式的取数和分析，除了问答式分析之外，是否有其他新的应用尝试？我们看到的另一部分工作是数据工程和数据开发。如果我们能够利用大型模型，借助其知识和推理能力，通过问答的方式帮助构建数据开发 pipeline，同时根据业务需求进行数据模型优化。你可能不需要理解如何构建宽表、分区、分桶优化，或者如何设计计算资源的高并发，只需提出业务需求，系统就能自动生成开发 pipeline，让开发者能够以自然语言进行开发，这也是一个值得探讨的问题。
 
@@ -190,7 +205,7 @@ tag: 云器Lakehouse
 
 - 疑问三：半/非结构化数据，知识的*显式*表达最终方式是什么？
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/EBaibcQicPxgwiaDeXxJayicBzfjzzlLvoxu10TniaODVxGbgmBeaPzAL3kVYlbsGC2zjlHoo14ibOdeo3UEXQJWfJ0g/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/d3b3aa25-21b6-4172-8cc6-b30e864dd3e8)
 
 结构化数据通常以二维表的形式来表达和利用，而大约 80% 的数据是非结构化的，，这些数据的利用方式之一，是将其与大型模型结合，转化为知识。
 
