@@ -10,7 +10,8 @@ tag: 云器Lakehouse
 
 数据平台的发展历程可以分为三个阶段：20世纪70年代，关系型模型和SQL语言的出现推动了数据库技术的发展，主要处理小规模的结构化数据；2000年，Google为了满足搜索业务需求，奠基了大数据和分布式系统技术，推动了大数据平台的发展；2022-2023年，GPU规模扩大和数据量增加，使得大模型具备了涌现能力和智能。展望未来，随着智能汽车等设备的普及，机器数据将成为主流，其数据量可能是人类数据的100倍，这将进一步推动数据平台的发展。
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2b1ChmuBndOMe0JKiaXnyJLVolLH27l7yFwa00997cpKjibCdbdMjVZKFQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/10c95cc6-c2fe-4781-a001-db7c2a761347)
+
 
 1. 三次革命: 70年代的数据库技术兴起、2000年左右的大数据兴起和现在的大模型时代。
 2. 技术驱动和规模驱动创新推动
@@ -22,9 +23,8 @@ tag: 云器Lakehouse
 
 关涛在演讲中列举了行业最佳实践的多个数据平台架构，并做了一个精炼的总结
 
+![image](https://github.com/user-attachments/assets/913431e2-f559-4894-b1fd-535f3bcaf84f)
 
-
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2b00ha2H8JNQ4lNgUEOIwXKliaBAlyq3y92gibTs3jdFMEHeZs4LcDQ8WQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 #### 常见数据基础设施架构
 
@@ -44,7 +44,8 @@ tag: 云器Lakehouse
 
 #### **Lambda架构的问题**
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bCCUSUvfic53LqARMVuqicicgSGaxtNgOuCSL9EOMbMvpv2o02iaQ773BDA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/ea66b9cb-cdfc-43c3-b291-53deea8159cc)
+
 
 - 标有蓝色三角的是有独立存储的模块。例如流计算Streaming Processing和交互分析Real-Time Analytics有自己的数据存储，导致了数据的冗余。
 - 标有小数据库标识的是代表有独立的元数据管理系统，用于描述数据的结构、来源、转换逻辑等信息。
@@ -55,9 +56,7 @@ tag: 云器Lakehouse
 
 关涛谈到，当前Lambda架构由批处理、流计算、交互分析3个“隐形的”模块化的系统拼合，由于彼此独立产生了以下问题：
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bCLib3gakruodPYeUA5y579m9UnsVKq93npLSUDgMSiaJwSm9ooicxB4bw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
-
+![image](https://github.com/user-attachments/assets/540dd950-f65e-4dfb-b53f-15178a2b018b)
 
 #### **问题二：高成本、高TCO**
 
@@ -67,7 +66,8 @@ tag: 云器Lakehouse
 
 ***Total Cost of Ownership（TCO） =  硬件+软件成本 +（开发人员成本）+ 维护人力成本 + 治理优化成本***
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bBfVtfWN8rMzibg8X2aZbROdZJeMIWq7lfO37SO4GP9OC49SwZjhOOyQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/56ed477a-3fe9-493f-8a26-7939d9497130)
+
 
 
 
@@ -75,10 +75,9 @@ tag: 云器Lakehouse
 
 除了高昂的使用成本外，当前主流数据平台在数据治理和优化方面的低效问题也日益凸显。随着数据规模的爆发式增长和业务复杂度的不断提升，传统的人工治理和优化方式已经难以应对大数据时代的挑战。
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bc8sFBtR53SxHciaibPicDKbPsvwZhaicS1Msm8m2MfOh0nbLiaTsuFaZ78A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/abbeff3a-b15e-4289-9dc7-d4d9778c337a)
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2b15n3TK7U7HcM4MvuMlobVNFB0hoXiaYFNOR7yjNaIDjdPvTdXJ6MdyQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
+![image](https://github.com/user-attachments/assets/9b769d60-b40b-4001-9168-5e5da9ba221c)
 
 
 ## **总结改进目标：下一代数据平台应该具备哪些特性？**
@@ -95,11 +94,7 @@ tag: 云器Lakehouse
 
 第五,我们需要在合适的领域引入AI技术。这一点其实与大数据领域的"不可能三角"类似。"不可能三角"告诉我们,数据的新鲜度、资源消耗和性能三者不可能同时被满足,我们只能在其中选择两个,很难兼顾第三个。我们的目标是尽可能扩大这个三角形的面积,但我们必须认识到,三者不可能同时被满足。所以,我们要追求的是在三者之间实现灵活的调节,同时保持接口的一致性。
 
-
-
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bQlqm1rib6nDic3BeQQRXqHLiaqVibylA00RXCiaiaDhDNSuHpjx1qIOWzzaQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
-
+![image](https://github.com/user-attachments/assets/8332795f-b02e-45be-b7ba-ef79fc9194e1)
 
 **下一代数据平台架构应该是什么样的呢？应该由以下三个关键模块组成:**
 
@@ -109,9 +104,8 @@ tag: 云器Lakehouse
 
 第三,面向AI,我们需要一个可扩展的设计。这种可扩展性体现在多个方面,如湖仓一体的开放性设计,引擎的可插拔设计等。因为面向未来,同一份数据可能会被多个引擎或系统所消费,所以整个平台的开放性和可扩展性将成为关键。
 
+![image](https://github.com/user-attachments/assets/85d315bf-d0e5-48ef-bd8b-b7e9a97239e1)
 
-
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2b8E4qTfgc39Ye1OlxqfyzCOPeoEsHISFKUKyKiaGiaM34pzCaFuCvbFUA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 总之,下一代面向数据分析的数据平台需要在架构上进行重大的革新。它需要能够处理海量的半结构化和非结构化数据,需要提供统一的接口和语义,需要在性能、实时性和成本之间找到最佳平衡,需要能够灵活调节,需要引入AI技术。只有满足了这些要求,才能够适应未来数据分析的需求,帮助企业从海量复杂数据中持续不断地提炼出商业价值。
 
@@ -126,16 +120,16 @@ tag: 云器Lakehouse
 
 数据的不可能三角：
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2boDV1leq1biaCibx7fOAUPxuxicFEJ8aOARtoVekxOL4sf0YF6WTcib2Uyw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/1b3c8bf1-6f3b-41a6-864b-906bfdbb1062)
+
 
 专项优化的引擎难以做到一体化
 
 - 优化方向不同：流计算面向数据新鲜度、批处理面向成本、交互分析面向查询性能
 - 计算形态不同：批处理是主动计算过程，流计算是被动计算过程，数据驱动计算
+  
+<img width="930" alt="image" src="https://github.com/user-attachments/assets/c5935028-fd2a-4185-93f5-1fd200a5dc83">
 
-
-
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bbY1B7Q3GBFoug3s7vGqbTwlQfZialZ1U7I0Ba9RD4CyvnxuURu8Duuw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 **通用增量计算，解决一体化难题的新方式**
 
@@ -145,7 +139,8 @@ tag: 云器Lakehouse
 
 **增量计算的概念如下**
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2biccC1bwKQ4N4yfh2sDbdqMxsdsS5KGMuP9icwGnib8OJo28NJxWviaBrfA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/c54623b5-550b-4d1e-aa8e-df196daebeb4)
+
 
 增量计算示意图
 
@@ -159,7 +154,8 @@ tag: 云器Lakehouse
 
 在湖仓之上加入增量存储，作为统一的存储形态，表达增量的能力；采用Shared Everything的系统架构，融合实时数仓的MPP架构和批处理的BSP架构；灵活支持不同的调度模式。最终形成单引擎（Single-engine）设计，一个引擎或Kappa架构的引擎，支撑流、批、交互，通过增量计算、增量存储和Shared Everything架构实现一体化。
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2b0upuCmW91elc2Oj01JpgfaHcasB4ndGopBQARx0iayj5JX7YsicsxMbw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/be909cf4-2915-4749-8329-155b96165b85)
+
 
 **最终形成单引擎（Single-engine）设计：**
 
@@ -171,7 +167,8 @@ tag: 云器Lakehouse
 
 **批处理性能验证：**
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2b5YGuGAlojRiaKNicib3zyql0OXvvjSQ4vNMcyxUIicpVG7AlpZmazRoXag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/3a7655ba-a20e-46f4-8b44-15cdfd2090b7)
+
 
 - 使用TPC-DS 10TB数据集进行ETL性能测试
 - 使用TPC-H 100G数据集进行即席（Ad-hoc）查询性能测试
@@ -183,7 +180,8 @@ tag: 云器Lakehouse
 
 **流计算性能验证：**
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bKrx3ibXdC9KtM5ubC5a2u5ARIAWhaqAGbQ1zQkhjJqHq0UIhgmb4fAA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/aea8a691-151f-4d4f-b115-7dc87421aa33)
+
 
 - 选取四个场景：单行处理、单流Join、单表聚合和双流聚合
 - 与Flink进行资源消耗对比（越低表示资源消耗越少）
@@ -197,13 +195,15 @@ tag: 云器Lakehouse
 
 在前面介绍了一体化引擎的优异性能后，我们仍然面临着一个问题：如何在不断变化的业务需求和工作负载下，持续保持数据建模的优化和平衡点的把控？传统的方式需要投入大量的人力和时间成本，而且难以应对动态变化的需求。
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bmh9kKjUQnu0FrOmvk1RNFticUUZmIIVlakibPMWQAo1BzUdu8uPIZTtg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/ca2969cf-e424-44ec-bf28-316600adf9fe)
+
 
 为了解决这个问题，我们引入了AI for Data的理念，即通过AI的方式来优化数据系统。这个概念在业界也得到了广泛的关注和实践，如Databricks和Amazon Redshift都在这一领域投入了重要的工作。
 
 具体来说，我们的做法是在一体化引擎平台之外，采集各种运行状态的数据，如资源消耗、利用率、数据倾斜等。
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bWA1OQW9IhkSS4hn4VFMo20TicrSXSM9uVPOFAjBZtQ7LrjAic5h0LneQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/f50780ce-6576-4a07-976d-ceb66d1a8575)
+
 
 系统架构示意图，数据采集、分析、优化、反馈的闭环
 
@@ -213,7 +213,8 @@ tag: 云器Lakehouse
 
 我们在真实客户的数据集上进行了测试，发现通过对ODS层数据的计算冗余进行抽象和优化，可以节省40%的资源消耗，同时还能提升30%的查询性能。
 
-![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLygK8T47qkmcJUEM1252L2bs1wiaD8NUQ0FosTAZ32QIYSMqftG02AUV0tF8Zib4WeXmwVajZic55NicA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![image](https://github.com/user-attachments/assets/74c43aaa-5bd2-454b-95f7-58bb3b76f98b)
+
 
 优化前后的资源消耗和查询性能对比图
 
