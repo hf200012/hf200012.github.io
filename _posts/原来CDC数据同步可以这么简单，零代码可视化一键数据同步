@@ -1,0 +1,282 @@
+---
+layout: post
+title: "[云器Lakehouse系统] 原来CDC数据同步可以这么简单，零代码可视化一键数据同步"
+date: 2024-11-07 
+description: "湖仓一体"
+tag: 云器Lakehouse
+---
+
+# 原来CDC数据同步可以这么简单，零代码可视化一键数据同步
+
+**当前企业实时同步与分析场景中面临的挑战：**
+
+随着业务发展需要，实时分析成为企业目前的强需求，成为支撑企业业务发展的必须项。
+
+一般来说，要满足数据实时分析的诉求，通常有两种方案：
+
+**第一种是直接使用源端的业务数据库，对接 BI 分析工具进行查询。**这种方式比较简单直接，但存在两项弊端：其一，在数据量特别大的时候且业务复杂度高的情况下，涉及到比较复杂的关系查询，比如多表 join ，查询性能会遇到瓶颈，一条 SQL 可能需要很长的时间才返回，满足不了实时分析的交互诉求；其二，从稳定性和安全性两个维度考虑，在企业中业务数据库通常归属业务方，一般不愿意被直接用于数据分析使用，限制了数据分析团队去查询使用。
+
+**第二种是把数据库里的数据先同步到数仓中，利用数仓高性能的查询能力来对接 BI 功能进行分析。**这个方案能很好解决上一个方案面临的两个问题，其自身最大挑战在于数据新鲜度。把数据从数据库同步到数仓，传统方式通常采用 T+1 或 H+1 的离线方式，时效性是一天或一小时的延迟，这样的数据新鲜度越来越不能满足业务对数据进行实时分析的时效性要求。后来演进出实时数仓架构，支持把数据实时写入到数仓，时效性和新鲜度会有极大提高，但实时数仓中常驻的实时同步任务，会使得成本会有极大增加；且数据写入数仓后，为了满足 BI 报表查询响应的要求，往往还需要再增加额外的 OLAP 引擎来做查询加速，会使得成本又进一步增加。
+
+总结来说，实时同步与分析主要面临数据导入和分析，在数据数据新鲜度和整体成本上的两个挑战。
+
+**云器Lakehouse简介**
+
+云器作为新一代数据平台的提供商，为企业提供了一体化 Data+AI 的整体解决方案。云器Lakehouse平台提供以下两大方面的核心产品能力：
+
+- **Single-Engine引擎：**可以统一批处理、流处理和交互分析全场景的作业负载诉求。
+
+- **一站式数据平台：**丰富的配套产品功能，预置数据相关常用服务，如数据同步、开发构建、运维监控、资产管理、数据质量等。
+
+基于此形成一整套解决方案，可以用一个引擎处理结构化和非结构化数据类型、不同的处理分析负载，满足企业在数据构建方面全方位的诉求，让数据处理更高效、更实时。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXACAZhATZ4Kp30iaP6OicqLkY1T9Qic5ia3fZUKp4I0iaiaKu3bnWkbk3GMdMA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图1：云器Singe-Engine引擎方案
+
+在云器Lakehouse的实时同步和实时分析解决方案中，支持源端多种数据源接入，如MySQL、PgSQL、SQL Server 等。基于实时同步写入到数仓里的同一份数据，可同时支撑 BI 报表进行实时查询。基于一个引擎（Single-Engine），一份数据从源端同步写入，再支撑目标消费，不再需要传统方案中额外新增的 OLAP 加速引擎，可以简化整体架构，进而极大地节约成本。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAs2iaicEDlGr4icvaPFeMeBCjK18OiaqiaJAc0J405wOiaFbibWkGcic93OMxvg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图2：云器Lakehouse支持主流数据库接入
+
+**实时任务演示**
+
+下面用一个具体例子演示云器Lakehouse是怎样去应对源端的复杂挑战，将数据实时同步，并支持实时分析查询。
+
+**演示背景**
+
+本次演示中，源端准备了四张各有 100 万行数据的表，计划将这 400 万行数据同步到目标里。源端数据在 MySQL 的 RDS 数据库内，采取分库分表的结构，数据存在不同的分表，通过云器的实时同步方案，把数据同步进云器Lakehouse，直接使用 BI 报表进行查询分析。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXA8UZaszZFNibGV0s1Pgh3G2KR63h659CY0xcrKeE1ksMsA3Z3iaQj5pmg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图3：演示数据流程
+
+本演示以常见的 SaaS 服务模式为例，多租模式下，其底层业务数据库中，某些租户的信息会存在同一张分表内，分表下包含租户定制的扩展字段，即源端是基本相同的四张分表，但部分表的字段存在细微差异，如下图所示，yellow_taxi_02 表包含扩展字段 2 。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAlNSvwUoiasiayOpUC1Jyj64K9EKp0h4cyJZRHR7aK0Ojkh93eYg5emaw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图4：演示表结构示意
+
+**实时同步任务配置**
+
+下面开始进入云器Lakehouse产品中，为大家演示超大规模数据是如何实时同步，并进行实时查询分析的。
+
+**多表异构同步配置**
+
+首先在云器Lakehouse任务开发里新建多表实时同步任务，选择 MySQL 数据源。云器提供两类数据同步模式：
+
+- 第一类多表镜像，把源端的数据表原原本本地镜像同步到数据仓库里。
+
+- 第二类是多表合并，也是本次演示所中用到的场景。在源端数据量特别大、有分库分表场景的情况下，同步过程中，需要提前把需要 ETL 处理的 transform 过程完成，多张表合并写入到同一张表中，这样在后续查询中不需要再进行多表join，为查询提速。
+
+之后再选择存储了源端连接串信息的数据源。（如下图）
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAibwxq7Yjibkb7UWcH3gxlFrbBrpZ1RaIliatqSsS0iaupXA5CfdibVvb6RQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图5：在云器Lakehouse中创建实时任务
+
+接下来配置需要同步的对象。云器提供了丰富的过滤规则来筛选源端表，比如命名的精确匹配、正则匹配等，可以按需使用。在源端表字段存在不一致的情况下，Lakehouse实时同步会自动检测识别，提示用户开启异构表合并同步功能。异构表合并同步功能作用是在目标端的表中，取源端表字段的并集进行建表，确保源端所有的数据能被同步写入到目标端。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAunyBd125MgDoBCp5JTUiczRM2YDPiaekmafo0xGl6iaut5j9Ozzx2S2aA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图6：配置目标表
+
+配置完成后可以对具体的表的字段进行预览检查，确保扩展字段也被添加进来，保证数据一致。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAZiciaOWjbP34Um5Vdaofgh0YVlegicjCBWqlaKhEBwVj6XSN6ypoZhDRA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图7：检查具体字段
+
+如果使用镜像同步模式来代替多表合并模式，会把源端表的结构完整映射到目标表上，但还需要再进行 ETL 的处理加工、产出一张新的合并后的表供BI查询。增加表，也附带增加了一个处理链路，提升复杂度的同时会使得端到端的整个链路更长，数据新鲜度和时效性会大打折扣，成本也会提升。
+
+**通过扩展字段作为联合主键确保合并过程中数据不丢失**
+
+接下来看一个更复杂的情况，前面提到，源端数据是采用分表的方式存储，但业务上常常会遇到一种情况，同样一个主键字段在不同分表之间的数据会出现重复。
+
+本次演示数据中也模拟设计了类似情况，在源端两张表里去查询 ID ，可以看到同样的主键 ID 取值，在不同的表里分别会有一条记录，这会给同步过程带来了挑战：在合并写入到目标端时，如果是只按 ID 作为主键，这两条记录就会被尝试写入到一条记录中，会产生数据冲突的情况。两条源端的记录依据先后顺序，后到的源端表中的数据被把先到的源端表中的数据给覆盖掉。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAhGW65XAO0xDGF5xeoy9UunDqRgQ7MialPM6mAyYdtqbmrTPdFZP18hg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXA2cQ8bRiaGFWsChcib0eXib58UVEKJIwMLZcEgfIhJUQrueZGRsxdJMCgA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图8：同一字段在不同分表间的记录对比
+
+面对这种情况，Lakehouse 实时同步方案中，提供了扩展字段的能力，来保证数据准确性。通过标识源端数据来源，比如将 server 、databasename 、 tablename 等字段设置为联合主键后，那么这两条数据在目标端会被当成两条记录来对待。通过这种方式，保证在即使源端出现分表中主键数据有重复的复杂情况下，源端数据也能被准确地同步到目标端。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAH4rg2UBL6H3HK3VnrDX90D5MvKicUPUxYz4e7qEh8NsiaqMRJWZEJ3fA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图9：云器Lakehouse扩展字段功能
+
+下一步在目标配置里选择数据源、目标数据源及计算集群。
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAc7Ao5YmzBwIia7A3DttdiaG6dFosKxd1dbicJ10DbqvRQ020iaRtywOAFA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图10：目标表配置
+
+接下来可以在映射关系中预览同步的字段配置，可以看到扩展字段包含在内，新增组件/联合主键也在这里有所体现。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAvDDbf5AY48mn3ibrFYqUQzz0pJWJ7FsYia6zSb8Eia4xwh1DIAWJXcUiag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图11：预览目标表字段
+
+云器Lakehouse实时同步中，也提供了丰富同步规则策略，用来动态适配源端数据库的变更（Schema Evelution），比如源端表删除、新增字段等情况下的应对策略。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAbYB5QeZdYNVM5QVPdjKibS2XNubkiccdSqqwsic9muoYsNbA0cEGpNqtw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图12：配置同步规则
+
+到这里，整个同步任务就配置完成，只需要简单五步：**选择数据源、圈定源端同步对象、设置高阶属性、选定目标端，设定同步策略。**
+
+**启动数据实时同步**
+
+云器Lakehouse提供了开发环境和生产环境两种模式，要将该任务在生产环境运行起来，需要先将其发布提交，然后在运维中心再启动该任务。
+
+任务启动时，可以根据实际需求，选择是否进行全量数据同步。首次同步的数据，通常建议选择做一次全量数据同步，然后再进行增量数据同步。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXANib4G5RMa57ENfvHmpbj8clJN3DchPLKJv0b1LVFvfFQ7w7ccvWJvMg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图13：启动任务
+
+我们可以通过BI报表来检查源端数据库的数据情况，源端总共四张表，各有 100 万行数据，需要把这 400 万行数据同步到目标表里。在前面配置过程中可以看到每张表有20 多个字段，而且字段类型大部分是 String 类型，单条记录的size不算小，是比较贴合真实生产上的业务数据库的情况。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAwp3geD1Ft2fTo5JCHOu61XLJIwUfIqIoKQtmfTfziboUy5WDdlicqcrg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图14：源端数据的 BI 报表
+
+在运维界面中，可以看到任务正在全量同步阶段，数据已经写入 200 万行，速率在 25, 000+ 行/秒。
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAvNHbeQKEK1GpsxUWiclR2WNzBx9RRSA63sicJnMGhFtjibzzKGqKQKZqg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图15：任务状态监控
+
+💡特别的，在云器Lakehouse的实时同步任务中，仅需要在第一次启动时对源端做一次全量同步，在此基础上根据源端的数据变更，再进行增量同步。而且全量同步环节完成后，无需手动更改，任务会自动转入增量同步环节。
+
+云器Lakehouse还提供数据资产管理的产品模块，可以实时检查目标表的数据量的情况，全量同步完成后，可以看到目标端的数据条数和源端完全一致，为400万行。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAJnP8PypvxO9p8KjyGk4wic5NUdEpLBwuLDxiacib1mbkia5WDLzsJOeSdA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图16：数据详情
+
+**数据变更**
+
+在实际应用中，经常会出现因为业务需要使得源端数据库的表和结构出现变化的情况，如源端表增加了字段，删除了字段、或者字段的类型变化了。对于这类情况，Lakehouse的实时同步也提供了对应的解决办法。
+
+云器Lakehouse产品支持直接操纵源端数据库，通过 SQL 来对源端数据库进行修改、查询等操作，首先我们对源端数据进行变更，先在源端添加一些新的字段：ext_column_0 & ext_column_1，并在源端表里删掉一个字段，同时更改一个字段类型从 int 改为 bigint 。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAlcmyXa6Fnl2Hpw88nqetEXjFwiaWtNeSPePxlVHkdfhq7uWT7Apb8cw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXA0NGrO22uicAugIbGEicXIgmYvDt3jApxE0gXZ4EPypCztFxy51ibtb5WA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAvDGb3WTHHsFdtxYH5v1vZashxARxGPEzribSRUeJa4rvlD4a5Say3VQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图17：通过 SQL 调整源端表
+
+接下来可以在监控页面中看到，源端的数据变更已经被同步过来进行消费，基于在同步任务中配置的Schema Evelution规则，自动更新，无需手动操作进行其它额外配置、或者重启任务，这样能确保整个同步链路平滑运行。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAQMgZ32KXic2FfLibr2k5WsBogx5AibYRHIicUTmtk0K5NEYwnPI03iaRVicw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图18：监控运维界面
+
+同步完成后，也可以在任务运维界面中检查源端的变更是否被成功同步到目标端，可以看到，新增的字段 ext_column_0 & ext_column_1已经被扩展进目标端，更改的 bigint 字段也完成变更。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAZ124JjCfoqWXKnwqnSXA85nzDplH7xWCT3RX9xH9USW9yRZDM33puA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXA8DHt8yBCj4PU9QmqHcroSm7kjC9tsOVanFicqpHKMsfHxwiawOdwsQew/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图19：检查变更后数据
+
+**实时查询**
+在传统的离线数仓中，数据进来做完 ETL 的各种处理加工后，直接对接 BI 引擎查询会很慢，所以通常会采用一些实时分析引擎，比如 Clickhouse 等，再做查询加速。但在云器的方案中完全不需要，源端表能够被实时写入，也能够被实时查询，以及通过批处理加工后被实时查询分析。
+下图为本次DEMO的 BI 报表示意，展示源端 MySQL 数据行数的统计，目标端是云器 Lakehouse 内的数据行数，并做了一个复杂查询分析，按照不同的乘客数量统计费用的平均值。实时同步写入的表，跟查询的表是同一张表。
+
+在下图分析看板，是基于 Metabase 工具构建：
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAibeKGC7bwFywx0TawXkqAC2gibTGH59UIPGX8NJJmjlW1vLqjvWem82g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图20：BI 报表
+
+云器产品里提供了作业历史产品模块，可以看到提交给引擎的所有 SQL 明细。从下图中可以看到，实时同步写入的是 yellow_taxi_demo 表，在Metabase BI 看板里实时查询的也是该表。而且在演示的这个相对复杂的查询条件下，进行了400万行数据的全表扫描，能在 10 毫秒左右返回查询结果。云器Lakehouse的方案不需要新增额外的加速引擎来进行查询加速，也省去了再同步复制一份数据，所以能够极大地节约成本。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAQ2nAXV4lkNOELAdpdu6Pexc2s0Y28HFWbdTS3OkiaAxyxsfiaUygeyuA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图21：作业历史界面
+
+我们接下来看下高并发下的查询响应情况。云器Lakehouse 采用存算分离架构，在查询计算层面，通过不同集群类型来支撑不同的查询负载：
+
+- 通用型集群，面向批处理进行了针对性的优化。
+- 分析型集群，对于在线的实时分查询非常友好。
+
+云器也提供良好的资源弹性能力，可以设定不同集群规格和弹性伸缩方式，可以配置查询的并发数以及实例的副本个数来实现动态伸缩。比如源端有 8 个并发时，只需要 1 个查询实例，通过弹性设置为 2 个副本，当并发数超过 8 个时，系统会自动拉起扩容出第 2 个副本来承接超过 8 个以上的并发流量，整个过程完全不需要人为干预。
+
+此外，云器Lakehouse还提供自动启停的功能，整个产品的资源收费模型上，在SaaS模式下采取按量付费的模式，比如对于 BI 报表，在夜间没有使用、没有流量时，集群会被自动停止，就会产生费用，能避免资源的空置浪费、节约成本费用。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXA8I1cOjpWJjsGaAWQewnRKicqP5ptEYWnOHvtwAU3oLqRKRZDJibcZxpA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图22：集群创建
+
+**稳定性和监控**
+
+实时同步和分析链路搭建完成后，对于企业来讲，最关心的问题之一就是整个链路的稳定性。
+
+云器Lakehouse通过监控和告警的产品模块，可以为整个同步链路的稳定性提供保障。云器Lakehouse为每个同步任务提供完善的监控信息展示，比如同步状态、同步延迟等。面向同步链路里可能会发生的异常情况，比如单条数据写入时发生异常、导致任务失败，实时同步方案中也提供了任务的自动 Failover 能力，任务失败以后会被自动拉起，减少人为运维处理的投入。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAk9LDXoPaOMuSzlQSpic7kh3IYrVDdzpHkNF5Feah11ELaMBs5yicHsUg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAt5JEm91D6xqGs6jdb9T3ZHJjOw5RYPN9rlf4MQ7FgggiaiaFdGMQOKyA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图23：指标监控界面
+
+云器Lakehouse内置监控告警模块，内置了丰富的状态和指标监控能力，支持自定义配置监控规则，来全面监控整个任务运行的状态，包括任务实例运行失败、单表存量数据同步异常、实时同步任务端到端延迟、作业 failover 、源端数据读取的点位延迟等等，一系列的监控事项，都可以通过规则监控起来。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXA9eGibcVrySUuH6NXVTEicSUsM3sqMkTXq3kb5p5mfHO3Y8Hakoq5SHiaQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图24：监控告警规则
+
+本次演示中配置了一些监控规则，可以看到下图告警通知，会监控端到端同步的延迟是否超过了 10 秒，在数量特别大时，延迟上去，会被监控捕获到，并通过告警通知提醒负责人感知并及时处理。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAKMiaKIibgoibHuD4DHUBCwUf2NNhriczBDSCXfyM9dTk5kia1aoVVDZm6bA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图25：监控告警界面
+
+**任务运维处置**
+在实际生产过程中，经常会遇到各种各样的复杂问题，为此云器实时同步方案中也提供了多种配套运维处置功能来进行支持。
+
+例如在实时同步运行中，源端数据发生了变化，某个表中的数据出现了问题，针对这种情况，我们提供补数同步功能，支持对特定表重新进行全量同步。在业务突发高峰，源端变更流量非常大时，多个表的变更数据的实时同步会相互影响。这两种情况下，都可以通过全量补数同步的功能去加速数据同步过程。以下图为例，对源端表 yellow_taxi_00 表重新进行补数全量同步，其增量实时同步会被暂停，后台会通过全量的方式把源端数据重新同步。补数修订的全量同步完成后，增量同步会自动启动，无需再手动操作。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAFiaSzw1lOlLpS8hkQeZCxqpgPoqoq00gWyrf6Gd3lHX8sWzZM6Mt04w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图26：补数同步功能
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXAllsgleAzZ5RD279v33FCoFSMJwU3zLiaPwKmFABjYoAZuqGwkNZ1mYQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图27：自动切换同步状态
+
+此外，云器Lakehouse还为日常运维提供优先执行功能，当在有多张表需要同步，而资源相对有限的条件下，可选择业务上更重要的表优先分配资源，在任务队列里面优先执行该表的数据同步，可以在任务整体出现消费堆积、端到端延迟变大的情况下，也能保证业务关键数据的新鲜度。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXA5PNOA8AvGBnQvib2crlycEjmtZquH6UA65xmMWHeHJbZiaXTEVHb4iaiaQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图28：日常运维功能
+
+**性能与成本**
+
+性能和成本也是企业目前比较关注的问题，在不考虑产品性能的情况下单独讨论成本是不合理的。企业在追求数据新鲜度时，可能会面临成本的大幅增加；如果优先考虑成本，可能会牺牲数据同步和查询的性能，导致数据新鲜度不足，对此，云器Lakehouse的解决方案希望能将性能与成本之间的平衡控制权交给企业。
+对于企业来说，业务上最开始构建时，可能 t+1 的时效性已经能满足业务初始启动使用的诉求，但随着业务发展会需要越来越新鲜的数据，如 h+1 或者 m+1 。
+为此，云器Lakehouse可以灵活地配置调度周期，比如可以从每周执行调整为每天执行，从每天执行一次改为执行多次，调度频次也支持灵活设定间隔，最小支持 1 分钟，这是传统批处理的方式。
+
+![img](https://mmbiz.qpic.cn/sz_mmbiz_png/YKKw3T8CyLwicodAeql6U9yib8rlV7FMXA2NGGHtRQVdlPFOkMjkpYliavvTDxxDIuUG0uzKLVbvFvPJjicDTdagJA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+图29：调度配置界面
+
+云器Lakehouse 也提供了更高阶的产品特性：Dynamic Table ，其核心要点是可以只计算变化的数据，来代替传统的批处理中的全量计算，并内置刷新周期，可以根据业务需要灵活调整。比如将 Dynamic Table  的刷新周期设置一个小时，它可以根据源端的数据变化，在一个小时内刷新一次，更新表的数据计算结果供下游使用。如果业务诉求的新鲜度变得更高时，只需把 Dynamic Table 的数据刷新频次调整的更高，就可以实现数据新鲜度的“无级调速”。
+
+上文也提到，在计算集群规格上，云器Lakehouse也支持灵活调整。当数据新鲜度刷新周期变得更高时，每小批处理的数据量相应会变小，可以使用相对来说更小的集群规格来满足数据处理的要求，也能进一步节约成本。通过这样的灵活变化，能够找到数据新鲜度和成本的一个精益平衡。
+
+总结来说，企业通常选择批处理都是因为其成本低，代价是它的数据新鲜度不高。云器Lakehouse提供的的处理方式，既能降低成本，还解决了数据时效性的问题。或者反过来说，以前企业为了高时效性，可能就不控成本了，但今天云器提供的这种方式，在选择最适合的数据新鲜度和刷新周期下，能获得很好的平衡。
+
+云器服务了国内一家 CRM 行业的头部客户，基于上述的实时同步和查询方案，从整个源端的实时同步到后续的实时处理分析对照下来，相比国内的头部云厂商的主流方案，整个成本上能够节约 50% 以上。
+
+（了解更多请点击[销售易基于Lakehouse的实时分析提升用户数据体验实践分享](http://mp.weixin.qq.com/s?__biz=MzkxMzM5MTU0Nw==&mid=2247486169&idx=1&sn=66fbea51af5241f79e86bf72a8288220&chksm=c17f200df608a91b22e6bd7cf05637507a110e2d39c2f48e5e261823c80778836174437eb3bb&scene=21#wechat_redirect)）
+
+**总结**
+
+云器Lakehouse基于一站式产品能力，提供了面向实时同步和实时分析场景的解决方案，应对源端数据库的复杂情况。产品支持对接MySQL、 PGSQL、SQLServer 等各种数据源，满足源端数据库存在异构情况下的同步要求，提供相对完善的高性能同步能力，和完善的配套运维监控能力保障数据的稳定生产。在成本方面，云器相比头部云厂商的传统同步方案，能够做到 50% 以上的整体成本节约。性能方面，具备更低的端到端的同步延迟，通常情况下可以做到 20 秒之内；以及更快的分析查询响应的速度，在复杂的情况下，能够做到 10 毫秒的查询相应速度。
+
+基于云器Lakehouse的产品能力，可以为企业提供更好的数据新鲜度，让业务决策快人一步，在竞争中处于领先位置。
