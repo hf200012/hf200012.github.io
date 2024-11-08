@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "从 Data 到 Data+AI，数据基础设施第三次演进的观察与思考"
+title: "[云器Lakehouse系列] 从 Data 到 Data+AI，数据基础设施第三次演进的观察与思考"
 date: 2024-11-07 
 description: "湖仓一体"
-tag: 湖仓一体
+tag: 云器Lakehouse
 ---
 
 # 从 Data 到 Data+AI，数据基础设施第三次演进的观察与思考
