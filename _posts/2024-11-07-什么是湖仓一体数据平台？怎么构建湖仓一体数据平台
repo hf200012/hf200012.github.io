@@ -9,7 +9,7 @@ tag: 湖仓一体
 
 # 什么是湖仓一体数据平台？怎么构建湖仓一体数据平台
 
-###  什么是湖仓一体数据平台？
+## 什么是湖仓一体数据平台？
 
 世界各地的组织都在寻找存储解决方案来管理大数据的数据量、延迟时间、弹性和数据访问要求。最初，很多公司利用现有的技术栈，尝试让数据湖提供与仓库相同的功能，调整数据仓库以处理大量的半结构化数据，或选择将数据保留在这两种系统中。
 
@@ -59,13 +59,13 @@ tag: 湖仓一体
 
 BI 应用直接访问湖仓一体中的源数据，可减少数据重复。
 
-### 数据湖仓一体的工作原理是什么？
+## 数据湖仓一体的工作原理是什么？
 
 在使用数据湖仓一体时，请务必考虑它要实现的目标。数据湖仓一体旨在集中各种数据源并简化工程工作，让您组织中的每个人都可以成为数据用户。
 
 数据湖仓一体使用与数据湖相同的低费用云对象存储空间来提供按需存储，以便轻松预配和扩缩。与数据湖一样，它能够以原始形式捕获和存储大量所有类型的数据。湖仓一体在该存储区中集成了元数据层，以提供类似仓库的功能（湖上建仓），例如结构化架构、对 ACID 事务的支持、数据治理以及其他数据管理和优化功能
 
-#### 使用数据湖仓一体的优势
+## 使用数据湖仓一体的优势
 
 1. 简化的架构
 
@@ -139,26 +139,27 @@ BI 应用直接访问湖仓一体中的源数据，可减少数据重复。
 
 ![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmr76Xma3AlnsiaomlQaWzDByI6k458cL8nJJFJxoaqcEZKrc3A5SEmNwA/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-云器Lakehouse产品
+### 云器Lakehouse产品
+
 云器 Lakehouse 是一种创新的湖仓架构服务，旨在为企业提供一个全托管的数据管理和分析平台。该服务通过整合数据仓库构建、数据湖探索分析、实时与离线数据处理以及业务报表等多种功能，满足企业在不同发展阶段对扩展性、成本和性能的综合需求。
 
 云器 Lakehouse 采用存算分离和 Serverless 弹性算力技术，并具备智能优化特性，旨在简化数据开发和管理工作，加速企业数据洞察和价值实现。
 
-完全开箱即用的端对端数据解决方案
+#### 1. 完全开箱即用的端对端数据解决方案
 
 ![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrxab1nAicxhh0qg7eKpCjFwErIGnZSk05VTTrxL1UGvzicWrIcSE6ibDJw/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-2. 可视化数据开发
+#### 2. 可视化数据开发
 
 提供一站式可视化数据同步（包括实时同步，CDC数据同步），数据开发，任务调度及作业运维，可以平滑实现从开发环境到生产环境的无缝切换
 
 ![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrnianVQloPl6E3j4QdgibD8eIVKgEPm2m5ibUTwv8zQMWbcm7ZL4saKTMw/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-3. 任务运维
+#### 3. 任务运维
 
 ![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrZ2e2ubl1XLgEqyWYMx9RRfhz2xmSTn3oq4W7SYLnksK5H1ZjSXpjVQ/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-4. 数据地图及数据血缘
+#### 4. 数据地图及数据血缘
 
 数据地图：
 
@@ -168,19 +169,19 @@ BI 应用直接访问湖仓一体中的源数据，可减少数据重复。
 
 ![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmr1luW0l5s0v7EYNdJSfiaV2sibJKoaCL0ePfpBKmulyO9nKoo5LCUsQibQ/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-5. 数据质量
+#### 5. 数据质量
 
 云器Lakehouse提供了丰富的数据质量功能，用户可以根据自己需要进行数据质量规则的定义及数据质量的监控
 
-![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmr7jST2VapCFsWMf45Pee259OBiaxItkqrhwNhswr6apMYjUqQb1yyWibA/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1）
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmr7jST2VapCFsWMf45Pee259OBiaxItkqrhwNhswr6apMYjUqQb1yyWibA/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-6. 数据安全
+#### 6. 数据安全
 
 云器作为一个云原生Lakehouse SAAS服务，提供了完善的数据安全，操作审计，权限控制，网络策略等能力，确保用户数据安全及隐私。
 
-![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrY86pTxiaxTEUD6XqTibIxtxlSZo71TNX2PkJCnZ1J9ibflGPf8G5SH3Nw/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1）
+![img](https://mmbiz.qpic.cn/mmbiz_jpg/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrY86pTxiaxTEUD6XqTibIxtxlSZo71TNX2PkJCnZ1J9ibflGPf8G5SH3Nw/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-7. 弹性计算
+#### 7. 弹性计算
 
 云器 Lakehouse 采用存算分离和 Serverless 弹性算力技术，并具备智能优化特性，旨在简化数据开发和管理工作，加速企业数据洞察和价值实现
 
@@ -192,7 +193,7 @@ BI 应用直接访问湖仓一体中的源数据，可减少数据重复。
 
 分析模式：一般是用在增量计算，分钟级流计算，实时OLAP分析等实时、近实时场景，还有BI报表可视化等场景使用
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrwJBklicA8KSYibr9UHnfTwwFTyDWibM7nesJGmic5sQibhKrJLMficFibUNWg/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1）
+![img](https://mmbiz.qpic.cn/mmbiz_png/LkhXgdwQib0hGWXLaiaxCYibJAQfj6LibDmrwJBklicA8KSYibr9UHnfTwwFTyDWibM7nesJGmic5sQibhKrJLMficFibUNWg/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 我们可以通过几个场景来看这种存算分离，完全serverless化带来的优势
 
