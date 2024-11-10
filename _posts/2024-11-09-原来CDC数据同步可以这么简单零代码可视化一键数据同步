@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[云器Lakehouse系统] 原来CDC数据同步可以这么简单零代码可视化一键数据同步"
-date: 2024-11-07 
+title: "[云器Lakehouse系列] 原来CDC数据同步可以这么简单,零代码可视化一键数据同步"
+date: 2024-11-10
 description: "湖仓一体"
 tag: 云器Lakehouse
 ---
